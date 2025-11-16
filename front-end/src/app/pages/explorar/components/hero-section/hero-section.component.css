@@ -1,0 +1,135 @@
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-image: linear-gradient(to left top, #7e22ce 0%, #313ac2 30%, #3B5BDB 100%);
+    height: 485px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    color: white;
+    text-align: center;
+
+}
+
+h1 {
+    font-size: 3.9rem;
+    line-height: 1;
+    font-weight: 700;
+    width: 500px;
+}
+
+h1 span {
+    color: #FFD700;
+}
+
+p {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    max-width: 48rem;
+}
+
+.area-btn {
+    display: flex;
+    gap: 20px;
+}
+
+.area-btn button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: #313ac2;
+}
+
+.btn-anunciar {
+    background-color: #FFD700;
+}
+
+.btn-anunciar:hover {
+    background-color: #e6c200;
+}
+
+.circle {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 2%;
+    top: 140px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+}
+
+.circle-pulse {
+    position: fixed;
+    width: 90px;
+    left: 25%;
+    height: 90px;
+    top: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: pulse 1.3s normal infinite;
+    z-index: 1;
+}
+
+.circle-animation {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    right: 50px;
+    top: 370px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: bounce 1s normal infinite;
+    z-index: 1;
+}
+
+@keyframes bounce {
+
+    0% {
+        transform: translateY(0);
+        animation-timing-function: ease-out;
+    }
+
+    50% {
+        transform: translateY(-50px);
+        animation-timing-function: ease-in;
+    }
+
+    100% {
+        transform: translateY(0);
+        animation-timing-function: ease-in;
+
+    }
+}
+
+@keyframes pulse {
+
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.1;
+
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
