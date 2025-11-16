@@ -1,5 +1,3 @@
-// Assumindo que esta é a classe do seu componente principal (ex: hero-section.component.scss)
-// A classe .hero-section é o "container" de tudo.
 .hero-section {
     display: flex;
     justify-content: center;
@@ -7,9 +5,6 @@
     width: 100%;
     background-image: linear-gradient(to left top, #7e22ce 0%, #313ac2 30%, #3B5BDB 100%);
     height: 485px;
-    // Dica: Adicione 'position: relative;' aqui
-    // para que .circle e .circle-animation (com position: absolute)
-    // se posicionem em relação a esta seção, e não à página inteira.
     
     .hero-content {
         display: flex;
@@ -19,15 +14,12 @@
         gap: 30px;
         color: white;
         text-align: center;
-
-        // Aninhando o H1 e o P que estão dentro de .hero-content
         h1 {
             font-size: 3.9rem;
             line-height: 1;
             font-weight: 700;
             width: 500px;
 
-            // Aninhando o SPAN que está dentro do H1
             span {
                 color: #FFD700;
             }
@@ -43,7 +35,6 @@
             display: flex;
             gap: 20px;
 
-            // Aninhando o BUTTON que está dentro de .area-btn
             button {
                 display: flex;
                 justify-content: center;
@@ -57,12 +48,9 @@
                 cursor: pointer;
                 color: #313ac2;
 
-                // Aqui usamos o '&' para classes modificadoras
-                // Isso compila para 'button.btn-anunciar'
                 &.btn-anunciar {
                     background-color: #FFD700;
 
-                    // Aninhando o HOVER do .btn-anunciar
                     &:hover {
                         background-color: #e6c200;
                     }
@@ -71,7 +59,6 @@
         }
     }
 
-    // Círculos decorativos que também pertencem à .hero-section
     .circle {
         position: absolute;
         width: 80px;
@@ -96,8 +83,6 @@
     }
 }
 
-// Este usa 'position: fixed', então ele se posiciona em relação à tela,
-// não ao '.hero-section'. É melhor deixá-lo fora do aninhamento principal.
 .circle-pulse {
     position: fixed;
     width: 90px;
@@ -110,7 +95,6 @@
     z-index: 1;
 }
 
-// @keyframes ficam sempre no nível superior (root)
 @keyframes bounce {
     0% {
         transform: translateY(0);

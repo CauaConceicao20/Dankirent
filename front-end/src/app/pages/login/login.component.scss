@@ -22,7 +22,6 @@
         height: auto;
         flex: 1;
 
-        // Aninhando os elementos que pertencem ao formulário
         label {
             display: block;
             margin-bottom: 10px;
@@ -44,7 +43,6 @@
             color: white;
             padding: 10px;
 
-            // Aninhando o hover
             &:hover {
                 background-color: #1E40AF;
                 cursor: pointer;

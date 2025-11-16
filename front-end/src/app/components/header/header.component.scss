@@ -31,7 +31,6 @@ header {
             }
         }
 
-        // Regras compartilhadas para os dois estados de menu
         .nav-links-off, .nav-links-on {
             display: flex;
             justify-content: space-between;
@@ -46,7 +45,6 @@ header {
                 text-decoration: none;
                 font-size: 14px;
 
-                // Aninhando o modificador '.active'
                 &.active {
                     font-weight: bold;
                     color: #2563EB;
@@ -56,7 +54,6 @@ header {
             }
         }
 
-        // Regras específicas
         .nav-links-off {
             display: none;
         }
@@ -77,7 +74,6 @@ header {
             color: white;
             padding: 10px 15px 10px 15px;
 
-            // Aninhando o pseudo-seletor ':hover'
             &:hover {
                 background-color: #1E40AF;
                 cursor: pointer;
