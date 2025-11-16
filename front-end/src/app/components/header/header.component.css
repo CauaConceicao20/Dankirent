@@ -25,11 +25,11 @@ header {
 .logo a {
     display: flex;
     align-items: center;
-    max-width: 100px;
+    max-width: 183px;
 }
 
 .logo img {
-    width: 80%;
+    width: 35%;
     margin: auto auto auto 0; 
 }
 
