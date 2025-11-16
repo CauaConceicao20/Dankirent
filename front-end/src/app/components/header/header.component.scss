@@ -1,0 +1,133 @@
+header {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .header-container-login {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1230px;
+        font-weight: 500;
+        padding: 0px 15px 0 15px;
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+                display: flex;
+                align-items: center;
+                max-width: 183px;
+
+                img {
+                    width: 35%;
+                    margin: auto auto auto 0;
+                }
+            }
+        }
+
+        // Regras compartilhadas para os dois estados de menu
+        .nav-links-off, .nav-links-on {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                color: #505050;
+                text-decoration: none;
+                font-size: 14px;
+
+                // Aninhando o modificador '.active'
+                &.active {
+                    font-weight: bold;
+                    color: #2563EB;
+                    padding-bottom: 5px;
+                    border-bottom: 2px solid #2563EB;
+                }
+            }
+        }
+
+        // Regras específicas
+        .nav-links-off {
+            display: none;
+        }
+
+        .nav-links-on {
+            display: flex;
+        }
+
+        .container-btn-enter {
+            display: none;
+        }
+
+        .btn-menu {
+            font-weight: bold;
+            border: none;
+            border-radius: 7px;
+            background-color: #2563EB;
+            color: white;
+            padding: 10px 15px 10px 15px;
+
+            // Aninhando o pseudo-seletor ':hover'
+            &:hover {
+                background-color: #1E40AF;
+                cursor: pointer;
+            }
+        }
+
+        .conteiner-user {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+
+            a {
+                text-decoration: none;
+            }
+
+            .profile-user {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                font-weight: 500;
+                color: #505050;
+
+                &:hover {
+                    cursor: pointer;
+                    color: #2563EB;
+                }
+
+                .container-img-profile {
+                    width: 27px;
+                    height: 27px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    background-color: #D1D1D1;
+                }
+            }
+
+            .btn-back {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: white;
+                border: none;
+                color: #505050;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

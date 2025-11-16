@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-categories-section',
   imports: [],
   templateUrl: './categories-section.component.html',
-  styleUrl: './categories-section.component.css'
+  styleUrl: './categories-section.component.scss'
 })
 export class CategoriesSectionComponent {
 

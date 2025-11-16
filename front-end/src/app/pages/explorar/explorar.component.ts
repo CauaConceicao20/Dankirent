@@ -7,7 +7,7 @@ import { CategoriesSectionComponent } from "./components/categories-section/cate
   selector: 'app-apresentation',
   imports: [HeaderComponent, HeroSectionComponent, CategoriesSectionComponent],
   templateUrl: './explorar.component.html',
-  styleUrl: './explorar.component.css'
+  styleUrl: './explorar.component.scss'
 })
 export class ExplorarComponent {
 

@@ -1,0 +1,141 @@
+// Assumindo que esta é a classe do seu componente principal (ex: hero-section.component.scss)
+// A classe .hero-section é o "container" de tudo.
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-image: linear-gradient(to left top, #7e22ce 0%, #313ac2 30%, #3B5BDB 100%);
+    height: 485px;
+    // Dica: Adicione 'position: relative;' aqui
+    // para que .circle e .circle-animation (com position: absolute)
+    // se posicionem em relação a esta seção, e não à página inteira.
+    
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        color: white;
+        text-align: center;
+
+        // Aninhando o H1 e o P que estão dentro de .hero-content
+        h1 {
+            font-size: 3.9rem;
+            line-height: 1;
+            font-weight: 700;
+            width: 500px;
+
+            // Aninhando o SPAN que está dentro do H1
+            span {
+                color: #FFD700;
+            }
+        }
+
+        p {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            max-width: 48rem;
+        }
+
+        .area-btn {
+            display: flex;
+            gap: 20px;
+
+            // Aninhando o BUTTON que está dentro de .area-btn
+            button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                font-size: 1.2rem;
+                font-weight: 600;
+                padding: 15px 30px;
+                border-radius: 8px;
+                border: none;
+                cursor: pointer;
+                color: #313ac2;
+
+                // Aqui usamos o '&' para classes modificadoras
+                // Isso compila para 'button.btn-anunciar'
+                &.btn-anunciar {
+                    background-color: #FFD700;
+
+                    // Aninhando o HOVER do .btn-anunciar
+                    &:hover {
+                        background-color: #e6c200;
+                    }
+                }
+            }
+        }
+    }
+
+    // Círculos decorativos que também pertencem à .hero-section
+    .circle {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        left: 2%;
+        top: 140px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 1;
+    }
+
+    .circle-animation {
+        position: absolute;
+        width: 140px;
+        height: 140px;
+        right: 50px;
+        top: 370px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: bounce 1s normal infinite;
+        z-index: 1;
+    }
+}
+
+// Este usa 'position: fixed', então ele se posiciona em relação à tela,
+// não ao '.hero-section'. É melhor deixá-lo fora do aninhamento principal.
+.circle-pulse {
+    position: fixed;
+    width: 90px;
+    left: 25%;
+    height: 90px;
+    top: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: pulse 1.3s normal infinite;
+    z-index: 1;
+}
+
+// @keyframes ficam sempre no nível superior (root)
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+        animation-timing-function: ease-out;
+    }
+    50% {
+        transform: translateY(-50px);
+        animation-timing-function: ease-in;
+    }
+    100% {
+        transform: translateY(0);
+        animation-timing-function: ease-in;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
