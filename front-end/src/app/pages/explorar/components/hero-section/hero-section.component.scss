@@ -81,18 +81,18 @@
         animation: bounce 1s normal infinite;
         z-index: 1;
     }
-}
 
-.circle-pulse {
-    position: fixed;
-    width: 90px;
-    left: 25%;
-    height: 90px;
-    top: 300px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    animation: pulse 1.3s normal infinite;
-    z-index: 1;
+    .circle-pulse {
+        position: fixed;
+        width: 90px;
+        left: 25%;
+        height: 90px;
+        top: 300px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: pulse 1.3s normal infinite;
+        z-index: 1;
+    }
 }
 
 @keyframes bounce {
