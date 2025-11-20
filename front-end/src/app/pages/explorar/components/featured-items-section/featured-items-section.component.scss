@@ -69,11 +69,11 @@
         max-width: 1280px;
         margin: 0 auto;
         padding: 0 1rem;
-        transition: transform 200ms ease-out;
+        transition: transform 50ms ease-out;
 
         &.is-visible {
             animation: pulse 1s ease forwards, slide-in-top 2s ease-out forwards;
-            animation-delay: 0.1ms;
+            animation-delay: 0ms;
         }
     }
 
