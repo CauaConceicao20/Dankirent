@@ -1,15 +1,35 @@
-<section class="featured-items">
-    <div class="featured-items-content">
+<section class="featured-items" >
+    <div class="featured-items-content" appAnimateOnScroll>
         <div class="featured-items-header">
             <div class="featured-items-title">
                 <h2>Objetos em destaque</h2>
                 <p>Descubra os itens mais populares da nossa comunidade</p>
             </div>
-            <a href=""><span></span></a>
+            <a href=""><span>Ver todos</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-right" aria-hidden="true">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg></a>
         </div>
 
-        <div>
-            <app-card-item></app-card-item>
+        <div class="area-cards">
+            <app-card-item 
+            *ngFor="let card of cards" 
+            [title]="card.title" 
+            [category]="card.category"
+            [state]="card.state" 
+            [imageUrl]="card.imageUrl"
+            [description]="card.description"
+            [address]="card.address"
+            [uf]="card.uf"
+            [price]="card.price"
+            [priceHour]="card.priceHour"
+            [rating]="card.rating"
+            [reviewsCount]="card.reviewsCount"
+            [delivery]="card.delivery">
+            </app-card-item>
         </div>
 
     </div>
