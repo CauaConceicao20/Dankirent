@@ -27,6 +27,9 @@ footer {
 
     .area-btn {
         display: flex;
+        width: 100%;
+        padding: 10px;
+        justify-content: center;
         gap: 20px;
 
         button {
@@ -34,11 +37,10 @@ footer {
             justify-content: center;
             align-items: center;
             gap: 5px;
-            font-size: 1rem;
+            font-size: 0.99rem;
             font-weight: 600;
+            max-height: 55px;
             padding: 1rem 2rem 1rem 2rem;
-            padding-left: 2rem;
-            padding-right: 2rem;
             border-radius: 8px;
             border: none;
             cursor: pointer;
