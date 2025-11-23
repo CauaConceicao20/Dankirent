@@ -1,0 +1,176 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f9fafb;
+    padding: 1rem 1rem 4rem 1rem;
+
+    .section-content {
+        width: 100%;
+        max-width: 1280px;
+        padding: 1.5rem;
+
+        .section-title {
+            margin-bottom: 2rem;
+
+            h1 {
+                font-size: 2.25rem;
+                line-height: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: #111827;
+
+                @media (max-width:767px) {
+                    font-size: 1.875rem;
+                    line-height: 2.25rem;
+                }
+            }
+
+            p {
+                font-size: 1.25rem;
+                line-height: 1.75rem;
+                color: #4b5563;
+            }
+        }
+
+        .area-search {
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 1px 0 4px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+
+            .filter-title {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+
+                svg {
+                    box-sizing: border-box;
+                    border-width: 0;
+                    border-style: solid;
+                    border-color: #e5e7eb;
+                    color: #2563eb;
+
+                }
+
+                h2 {
+                    font-weight: 600;
+                    font-size: 1.125rem;
+                    line-height: 1.75rem;
+                    margin-left: 0.5rem;
+                }
+            }
+
+            .main-search {
+                input {
+                    width: 100%;
+                    border-radius: 0.5rem;
+                    padding: 0.75rem 1rem 0.75rem 1rem;
+                    border: 1px solid #d1d5db;
+                }
+            }
+
+            .search-filter {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 1rem;
+                align-items: center;
+                box-sizing: border-box;
+                padding-top: 1rem;
+
+                @media (max-width: 862px) {
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                }
+
+                
+                @media (max-width: 677px) {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                  @media (max-width: 497px) {
+                    grid-template-columns: repeat(1, minmax(0, 1fr));
+                }
+
+
+                .area-input {
+                    display: flex;
+                    flex-direction: column;
+                    box-sizing: border-box;
+
+                    label {
+                        font-weight: 500;
+                        font-size: 0.875rem;
+                        line-height: 1.25rem;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    input,
+                    select {
+                        padding: 0.75rem 1rem 0.75rem 1rem;
+                        width: 100%;
+                        border-radius: 0.5rem;
+                        border: 1px solid #d1d5db;
+                        border-width: 1px;
+                    }
+                }
+            }
+
+            .area-btn {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 1.5rem;
+
+                button {
+                    display: flex;
+                    font-weight: 500;
+                    padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+                    background-color: #2563eb;
+                    color: white;
+                    align-items: center;
+                    border: none;
+                    border-radius: 0.5rem;
+                    cursor: pointer;
+                    gap: 0.5rem;
+
+                    &:hover {
+                        background-color: #1258ef ;
+                    }
+                }
+
+            }
+        }
+
+        .founds-objects {
+            p {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-weight: 600;
+                font-size: 1.25rem;
+                line-height: 1.75rem;
+                color: #111827;
+
+            }
+        }
+
+        .search-result {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+
+            @media (max-width: 1150px) {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            @media (max-width: 889px) {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            @media (max-width: 620px) {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+        }
+    }
+}

@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  optionNavSelect : String = "explorar";
+  optionNavSelect: String = "explorar";
 
   select(item: string) {
     this.optionNavSelect = item;
