@@ -4,8 +4,8 @@
             <a href="/apresentation"><img src="img/logo-danki.png" alt="Logo"></a>
         </div>
         <nav class="nav-links-off">
-            <a (click)="select('explorar')" [class.active]="optionNavSelect === 'explorar'" href="">Explorar</a>
-            <a (click)="select('buscar')" [class.active]="optionNavSelect === 'buscar'" href=""><svg
+            <a [class.active]="optionNavSelect === 'explorar'" href="">Explorar</a>
+            <a [class.active]="optionNavSelect === 'search'" href=""><svg
                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-search" aria-hidden="true">
@@ -15,24 +15,24 @@
         </nav>
 
         <nav class="nav-links-on">
-            <a (click)="select('explorar')" [class.active]="optionNavSelect === 'explorar'" href="">Explorar</a>
-            <a (click)="select('buscar')" [class.active]="optionNavSelect === 'buscar'" href="/search"><svg
+            <a [class.active]="optionNavSelect === 'explorar'" href="">Explorar</a>
+            <a [class.active]="optionNavSelect === 'search'" href="/search"><svg
                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-search" aria-hidden="true">
                     <path d="m21 21-4.34-4.34"></path>
                     <circle cx="11" cy="11" r="8"></circle>
                 </svg><span>Buscar</span></a>
-            <a (click)="select('anunciar')" [class.active]="optionNavSelect === 'anunciar'" href=""><svg
+            <a [class.active]="optionNavSelect === 'anunciar'" href=""><svg
                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-plus" aria-hidden="true">
                     <path d="M5 12h14"></path>
                     <path d="M12 5v14"></path>
                 </svg><span>Anunciar</span></a>
-            <a (click)="select('meusObjetos')" [class.active]="optionNavSelect === 'meusObjetos'" href="">Meus
+            <a  [class.active]="optionNavSelect === 'meusObjetos'" href="">Meus
                 Objetos</a>
-            <a (click)="select('reserva')" [class.active]="optionNavSelect === 'reserva'" href="">Reservas</a>
+            <a [class.active]="optionNavSelect === 'reserva'" href="">Reservas</a>
         </nav>
 
         <div class="container-btn-enter">

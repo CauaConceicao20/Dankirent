@@ -10,7 +10,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
-  products = [
+
+  public search : String = "search";
+
+  public products = [
     {
       id: 1,
       title: "Prancha de Stand Up Paddle",

@@ -5,14 +5,15 @@ import { CategoriesSectionComponent } from "./components/categories-section/cate
 import { FeaturedItemsSectionComponent } from './components/featured-items-section/featured-items-section.component';
 import { BenefitsSectionComponent } from './components/benefits-section/benefits-section.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-apresentation',
   imports: [HeaderComponent, HeroSectionComponent, CategoriesSectionComponent, FeaturedItemsSectionComponent,
-      BenefitsSectionComponent, FooterComponent  ],
+      BenefitsSectionComponent, FooterComponent, CommonModule],
   templateUrl: './explorar.component.html',
   styleUrl: './explorar.component.scss'
 })
 export class ExplorarComponent {
-
+ public explorar : String = "explorar";
 }
