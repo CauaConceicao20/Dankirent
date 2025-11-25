@@ -1,0 +1,45 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f9fafb;
+    padding: 1rem 1rem 4rem 1rem;
+
+    .section-content {
+        width: 100%;
+        max-width: 1280px;
+        padding: 1.5rem;
+
+        .section-title {
+            margin-bottom: 2rem;
+
+            h1 {
+                font-size: 2.25rem;
+                line-height: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: #111827;
+
+                @media (max-width:767px) {
+                    font-size: 1.875rem;
+                    line-height: 2.25rem;
+                }
+            }
+
+            p {
+                font-size: 1.25rem;
+                line-height: 1.75rem;
+                color: #4b5563;
+            }
+        }
+
+        .inputs-area {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+    }
+
+}
