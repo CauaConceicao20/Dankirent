@@ -1,0 +1,129 @@
+<app-header [optionNavSelect]="reservations"></app-header>
+
+<section>
+    <div class="section-content">
+        <div class="section-title">
+            <h1>Minhas Reservas</h1>
+            <p>Gerencie suas reservas como locatário ou proprietário</p>
+        </div>
+        <div class="menu-nav">
+            <button (click)="navOption= 'locacao'" [class.click]="navOption == 'locacao'">Minhas Locações</button>
+            <button (click)="navOption = 'aluguel'" [class.click]="navOption == 'aluguel'">Meus Aluguéis</button>
+        </div>
+
+        <div class="stats-card-area">
+            <article class="stats-card">
+                <div class="stats-card-img" id="card-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-package w-6 h-6 text-blue-600" aria-hidden="true">
+                        <path
+                            d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z">
+                        </path>
+                        <path d="M12 22V12"></path>
+                        <polyline points="3.29 7 12 12 20.71 7"></polyline>
+                        <path d="m7.5 4.27 9 5.15"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p>Total</p>
+                    <p class="statistical-value">4</p>
+                </div>
+            </article>
+
+            <article class="stats-card">
+                <div class="stats-card-img" id="card-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-clock w-5 h-5 text-yellow-600" aria-hidden="true">
+                        <path d="M12 6v6l4 2"></path>
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                </div>
+                <div>
+                    <p>Pendentes</p>
+                    <p class="statistical-value">4</p>
+                </div>
+            </article>
+            <article class="stats-card">
+                <div class="stats-card-img" id="card-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-circle-check-big w-5 h-5 text-green-600" aria-hidden="true">
+                        <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                        <path d="m9 11 3 3L22 4"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p>Ativas</p>
+                    <p class="statistical-value">0</p>
+                </div>
+            </article>
+            <article class="stats-card">
+                <div class="stats-card-img" id="card-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-circle-check-big w-5 h-5 text-gray-600" aria-hidden="true">
+                        <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                        <path d="m9 11 3 3L22 4"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p>Finalizadas</p>
+                    <p class="statistical-value">0</p>
+                </div>
+            </article>
+        </div>
+
+        <div *ngIf="products?.length == 0 && navOption == 'locacao'" class="reservation-loca-not-found">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-calendar w-16 h-16 text-gray-400 mx-auto mb-4" aria-hidden="true">
+                <path d="M8 2v4"></path>
+                <path d="M16 2v4"></path>
+                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                <path d="M3 10h18"></path>
+            </svg>
+            <h3>Nenhuma reserva encontrada</h3>
+            <p>Você ainda não faz nenhuma reserva. Explore objetos diponíveis!</p>
+            <a href="search"><button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-plus" aria-hidden="true">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5v14"></path>
+                    </svg> Explorar Objetos
+                </button>
+            </a>
+        </div>
+
+        <div *ngIf="products?.length == 0 && navOption == 'aluguel'" class="reservation-loca-not-found">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-calendar w-16 h-16 text-gray-400 mx-auto mb-4" aria-hidden="true">
+                <path d="M8 2v4"></path>
+                <path d="M16 2v4"></path>
+                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                <path d="M3 10h18"></path>
+            </svg>
+            <h3>Nenhuma reserva encontrada</h3>
+            <p>Nenhum objeto seu foi reservado ainda</p>
+        </div>
+
+        <div *ngIf="products?.length != 0 && navOption == 'locacao'" class="area-cards">
+            <app-card-item *ngFor="let product of products" [title]="product.title" [category]="product.category"
+                [state]="product.state" [imageUrl]="product.imageUrl" [description]="product.description"
+                [address]="product.address" [uf]="product.uf" [price]="product.price" [priceHour]="product.priceHour"
+                [rating]="product.rating" [reviewsCount]="product.reviewsCount" [delivery]="product.delivery">
+            </app-card-item>
+        </div>
+
+        <div *ngIf="products?.length != 0 && navOption == 'aluguel'" class="area-cards">
+            <app-card-item *ngFor="let product of products" [title]="product.title" [category]="product.category"
+                [state]="product.state" [imageUrl]="product.imageUrl" [description]="product.description"
+                [address]="product.address" [uf]="product.uf" [price]="product.price" [priceHour]="product.priceHour"
+                [rating]="product.rating" [reviewsCount]="product.reviewsCount" [delivery]="product.delivery">
+            </app-card-item>
+        </div>
+    </div>
+</section>
