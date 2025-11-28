@@ -6,6 +6,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { AnnouncetComponent } from './pages/announcet/announcet.component';
 import { MyObjectsComponent } from './pages/my-objects/my-objects.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
+import { ObjectComponent } from './pages/object/object.component';
 
 export const routes: Routes =[
   {path: '', component: ExplorarComponent},
@@ -15,5 +16,6 @@ export const routes: Routes =[
   {path: 'search', component: SearchComponent},
   {path: 'announcet', component: AnnouncetComponent},
   {path: 'my-objects', component: MyObjectsComponent},
-  {path: 'reservations', component: ReservationsComponent}
+  {path: 'reservations', component: ReservationsComponent},
+  {path: 'object', component: ObjectComponent}
 ];

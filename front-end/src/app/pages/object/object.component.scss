@@ -1,0 +1,264 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f9fafb;
+    padding: 1rem 1rem 4rem 1rem;
+
+    .section-content {
+        width: 100%;
+        max-width: 1280px;
+        padding: 1.5rem;
+
+        .btn-back {
+            display: flex;
+            align-items: center;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            gap: 15px;
+            border: none;
+            background-color: transparent;
+            font-size: 1rem;
+        }
+
+        .object-rent {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+
+            @media (max-width: 1070px) {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .carousel-container {
+                width: 50%;
+
+                @media (max-width: 1070px) {
+                    width: 100%;
+                }
+            }
+
+            .rent-details {
+                width: 50%;
+                padding: 1.5rem;
+                border-radius: 1rem;
+                box-shadow: 1px 0 4px 2px rgba(0, 0, 0, 0.1);
+
+                @media (max-width: 1070px) {
+                    width: 100%;
+                }
+
+                .badges {
+                    display: flex;
+                    justify-content: space-between;
+                    top: 10px;
+                    left: 10px;
+                    display: flex;
+                    width: 95%;
+                    gap: 8px;
+                    margin-bottom: 20px;
+
+                    span {
+                        font-weight: 500;
+                        padding: 0.25rem 0.75rem 0.25rem 0.75rem;
+                        border-radius: 15px;
+                        font-size: 0.875rem;
+                        line-height: 1.25rem;
+                    }
+
+                    #categorie {
+                        background-color: #dbeafe;
+                        color: #1e40af;
+                    }
+
+                    #estado-object {
+                        background-color: #dcfce7;
+                        color: #166534;
+                    }
+                }
+
+                .rent-description {
+                    h1 {
+                        color: #111827;
+                        font-weight: 700;
+                        font-size: 1.875rem;
+                        line-height: 2.25rem;
+                        margin-bottom: 0.5;
+                    }
+
+                    .feedback-location {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 1rem 0 1rem 0rem;
+
+                        .text-feedback,
+                        .text-location {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 5px;
+                        }
+
+                        .text-feedback {
+                            .lucide-star {
+                                color: #facc15;
+                                fill: #facc15;
+                            }
+                        }
+                    }
+
+                    p {
+                        padding-bottom: 1.5rem;
+                        border-bottom: 1px solid #e5e7eb;
+                    }
+                }
+
+                .container-price {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 2rem 0 2rem 0rem;
+                    gap: 2rem;
+
+
+
+                    .price-card {
+                        display: flex;
+                        width: 50%;
+                        flex-direction: column;
+                        padding: 1rem;
+                        border-radius: 0.75rem;
+
+                        span {
+                            display: flex;
+                            align-items: center;
+                            color: #4b5563;
+                            margin-bottom: 10px;
+                            gap: 5px;
+                        }
+
+                        #price-value-hour {
+                            color: #9333ea;
+                            font-weight: 700;
+                            font-size: 1.5rem;
+                            line-height: 2rem;
+                        }
+
+                        #price-value-day {
+                            color: #2563eb;
+                            font-weight: 700;
+                            font-size: 1.5rem;
+                            line-height: 2rem;
+                        }
+                    }
+
+                    #price-day {
+                        background-color: #eff6ff;
+                    }
+
+                    #price-hour {
+                        background-color: #faf5ff;
+                    }
+
+                }
+
+                .options-delivery {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    border-top: 1px solid #e5e7eb;
+                    padding: 1rem 0 1rem 0rem;
+
+                    h3 {
+                        display: flex;
+                        align-items: center;
+                        color: #111827;
+                        font-weight: 600;
+                        font-size: 1rem;
+                        gap: 5px;
+                    }
+
+                    .options-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        margin-top: 6px;
+
+                        .option {
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+
+                            .circle-option {
+                                width: 7px;
+                                height: 7px;
+                                border-radius: 50%;
+                                background-color: #22c55e;
+                            }
+                        }
+                    }
+                }
+
+                button {
+                    width: 100%;
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+                    font-weight: 600;
+                    background-image: linear-gradient(to left, #9333ea 20%, #2563eb 100%);
+                    color: white;
+                    border: none;
+                    border-radius: 0.5rem;
+                    font-size: 1.10rem;
+                    cursor: pointer;
+                    margin-top: 20px;
+                }
+            }
+        }
+
+        .security-payment {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            padding-top: 1rem;
+
+
+            .security-payment-text {
+                display: flex;
+                align-items: center;
+                background-color: #f0fdf4;
+                width: 50%;
+                padding: 1rem;
+                border: 1px solid #bbf7d0;
+                border-width: 1px;
+                border-radius: 0.5rem;
+                gap: 10px;
+
+                @media (max-width: 1070px) {
+                    width: 100%;
+                }
+
+
+                .lucide-shield {
+                    color: #16a34a;
+                }
+
+                h3 {
+                    color: #14532d;
+                    font-weight: 600;
+                    font-size: 1rem
+                }
+
+                p {
+                    color: #15803d;
+                    font-size: 0.875rem;
+                    line-height: 1.25rem;
+                }
+            }
+        }
+    }
+}
