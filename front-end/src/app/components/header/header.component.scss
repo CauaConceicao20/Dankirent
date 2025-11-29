@@ -31,7 +31,8 @@ header {
             }
         }
 
-        .nav-links-off, .nav-links-on {
+        .nav-links-off,
+        .nav-links-on {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -81,6 +82,7 @@ header {
         }
 
         .conteiner-user {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -88,6 +90,15 @@ header {
 
             a {
                 text-decoration: none;
+            }
+
+            svg {
+                margin-top: 3px;
+                transition: transform 0.2s ease;
+
+                &.flipped {
+                    transform: rotate(180deg);
+                }
             }
 
             .profile-user {
@@ -123,6 +134,51 @@ header {
                 &:hover {
                     cursor: pointer;
                 }
+            }
+        }
+    }
+
+    .menu-options {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 35px;
+        background-color: white;
+        border-radius: 0.5rem;
+        z-index: 50;
+        width: 12rem;
+        border: 1px solid #e5e7eb;
+
+        &.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            list-style: none;
+            gap: 5px;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            color: #374151;
+            cursor: pointer;
+            border-radius: 0.5rem;
+
+
+            span {
+                color: #374151;
+                font-size: 0.875rem;
+                font-weight: 500;
+                line-height: 1.25rem;
+            }
+
+            &:visited {
+                color: inherit;
+            }
+
+            &:hover {
+                background-color: rgb(248, 248, 248);
             }
         }
     }
