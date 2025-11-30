@@ -61,10 +61,14 @@ header {
 
         .nav-links-on {
             display: flex;
+
+            @media (max-width: 950px) {
+                display: none;
+            }
         }
 
         .container-btn-enter {
-            display: none;
+            display: block;
         }
 
         .btn-menu {
@@ -81,12 +85,46 @@ header {
             }
         }
 
+        .container-hamburguer {
+            display: none;
+
+            @media (max-width: 950px) {
+                display: flex;
+                gap: 10px;
+
+            }
+
+            .botao-hamburguer {
+                display: block;
+                z-index: 1100;
+                color: black;
+                border: none;
+                background: none;
+                margin-left: 20px;
+                cursor: pointer;
+                border-radius: 5px;
+
+                .menu-hamburguer-linha {
+                    width: 30px;
+                    height: 1px;
+                    margin: 5px;
+                    border: 1px solid #1351d8;
+                    border-radius: 5px;
+                    background-color: #1351d8;
+                }
+            }
+        }
+
         .conteiner-user {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 15px;
+
+            @media (max-width: 950px) {
+                display: none;
+            }
 
             a {
                 text-decoration: none;
@@ -134,51 +172,6 @@ header {
                 &:hover {
                     cursor: pointer;
                 }
-            }
-        }
-    }
-
-    .menu-options {
-        display: none;
-        position: absolute;
-        right: 0;
-        top: 35px;
-        background-color: white;
-        border-radius: 0.5rem;
-        z-index: 50;
-        width: 12rem;
-        border: 1px solid #e5e7eb;
-
-        &.active {
-            display: flex;
-            flex-direction: column;
-        }
-
-        a {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            list-style: none;
-            gap: 5px;
-            padding: 0.5rem 1rem 0.5rem 1rem;
-            color: #374151;
-            cursor: pointer;
-            border-radius: 0.5rem;
-
-
-            span {
-                color: #374151;
-                font-size: 0.875rem;
-                font-weight: 500;
-                line-height: 1.25rem;
-            }
-
-            &:visited {
-                color: inherit;
-            }
-
-            &:hover {
-                background-color: rgb(248, 248, 248);
             }
         }
     }

@@ -1,7 +1,7 @@
 <header>
     <div class="header-container-login">
         <div class="logo">
-            <a href="/apresentation"><img src="img/logo-danki.png" alt="Logo"></a>
+            <a href=""><img src="img/logo-danki.png" alt="Logo"></a>
         </div>
         <nav class="nav-links-off">
             <a [class.active]="optionNavSelect === 'explorar'" href="">Explorar</a>
@@ -10,7 +10,8 @@
                     stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true">
                     <path d="m21 21-4.34-4.34"></path>
                     <circle cx="11" cy="11" r="8"></circle>
-                </svg><span>Buscar</span></a>
+                </svg><span>Buscar</span>
+            </a>
         </nav>
 
         <nav class="nav-links-on">
@@ -33,41 +34,35 @@
             <a [class.active]="optionNavSelect === 'reservations'" href="reservations">Reservas</a>
         </nav>
 
-        <div class="container-btn-enter">
-            <a href="/login"><button class="btn-menu">Entrar</button></a>
+        <div class="container-hamburguer" (click)="menuMobileIsVisible = !menuMobileIsVisible">
+            <div class="container-btn-enter">
+                <a href="/login"><button class="btn-menu">Entrar</button></a>
+            </div>
+            <button class="botao-hamburguer">
+                <div class="menu-hamburguer-linha"></div>
+                <div class="menu-hamburguer-linha"></div>
+                <div class="menu-hamburguer-linha"></div>
+            </button>
+            <app-side-menu [sideMenuIsVisible]="menuMobileIsVisible" [optionMenuSelect]="optionNavSelect"
+                [options]="optionsMobile">
+            </app-side-menu>
         </div>
 
-        <div class="conteiner-user" (click)="menuIsVisible = !menuIsVisible">
-            <a class="profile-user">
+        <div class="conteiner-user" (click)="menuDesktopIsVisible = !menuDesktopIsVisible">
+            <div class="profile-user">
                 <div class="container-img-profile">
                     <img src="" alt="">
                 </div>
                 <span>Cauã Conceição</span>
-                <svg [class.flipped]="menuIsVisible" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                <svg [class.flipped]="menuDesktopIsVisible" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform" aria-hidden="true">
                     <path d="m6 9 6 6 6-6"></path>
                 </svg>
-            </a>
-            <div [class.active]="menuIsVisible" class="menu-options">
-                <a routerLink="" (click)="$event.stopPropagation(); menuIsVisible = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-user" aria-hidden="true">
-                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg><span>Meu Perfil</span></a>
-                <a routerLink="/login" (click)="$event.stopPropagation(); menuIsVisible = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-log-out" aria-hidden="true">
-                        <path d="m16 17 5-5-5-5"></path>
-                        <path d="M21 12H9"></path>
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                    </svg><span>Sair</span></a>
             </div>
-            <!--<a href="/login"><button class="btn-back">Sair</button></a>-->
+            <app-menu-nav [menuVisible]="menuDesktopIsVisible" [options]="optionsDesktop">
+            </app-menu-nav>
         </div>
-    </div>
 
+    </div>
 </header>

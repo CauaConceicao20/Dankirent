@@ -1,0 +1,31 @@
+<aside class="side-menu" [class.active]="sideMenuIsVisible">
+    <a class="conteiner-user">
+        <div class="profile-user">
+            <div class="container-img-profile">
+                <img src="" alt="">
+            </div>
+            <div class="profile-user-name">
+                <p>Cauã Conceição</p>
+                <span>Visualizar perfil</span>
+            </div>
+        </div>
+    </a>
+    <div class="container-btn-enter">
+        <a href="/login"><button class="btn-menu">Entrar</button></a>
+    </div>
+    <div class="navegation-hamburguer">
+        <nav class="nav-links-off">
+            <a [class.active]="optionMenuSelect === 'explorar'" href="">Explorar</a>
+            <a [class.active]="optionMenuSelect === 'search'" href=""><span>Buscar</span></a>
+        </nav>
+        <nav class="nav-links-on">
+            <a [class.active]="optionMenuSelect === 'explorar'" routerLink="">Explorar</a>
+            <a [class.active]="optionMenuSelect === 'search'" routerLink="/search"><span>Buscar</span></a>
+            <a [class.active]="optionMenuSelect === 'announcet'" routerLink="/announcet"><span>Anunciar</span></a>
+            <a [class.active]="optionMenuSelect === 'my-objects'" routerLink="/my-objects">Meus
+                Objetos</a>
+            <a [class.active]="optionMenuSelect === 'reservations'" routerLink="/reservations">Reservas</a>
+        </nav>
+    </div>
+</aside>
+<div id="overlay" [class.active]="sideMenuIsVisible" (click)="sideMenuIsVisible = !sideMenuIsVisible"></div>

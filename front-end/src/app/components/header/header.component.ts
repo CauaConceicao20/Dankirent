@@ -1,18 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from "@angular/router";
+import { MenuNavComponent } from '../menu-nav/menu-nav.component';
+import { SideMenuComponent } from '../side-menu/side-menu.component';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, MenuNavComponent, SideMenuComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   @Input() optionNavSelect!: String;
 
-  public menuIsVisible : Boolean = false;
+  public menuDesktopIsVisible : Boolean = false;
+  public menuMobileIsVisible : Boolean = false;
+  public optionsDesktop : String[] = ["Meu Perfil", "Sair"];
+  public optionsMobile : String[] = ["Explorar", "Buscar", "Anunciar", "Meus Objetos", "Reservas", 
+    "Meu perfil", "Sair"];
 
   public select(item: string) {
     this.optionNavSelect = item;
