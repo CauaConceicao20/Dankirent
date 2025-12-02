@@ -1,0 +1,34 @@
+.terms-privacy {
+    color: #374151;
+    line-height: 1.625;
+    margin-top: 2rem;
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        gap: 10px;
+
+        .lucide-circle-alert {
+            color: #ea580c;
+        }
+    }
+
+    .clausula {
+        padding: 1rem;
+        border-left: 1px solid;
+        border-left-width: 4px;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        border-color: #ea580c;
+        background-color: #fff7ed;
+        margin-top: 1rem;
+
+        ul {
+            color: #374151;
+            list-style-type: disc;
+            list-style-position: inside;
+            margin-top: 0.75rem;
+        }
+    }
+}

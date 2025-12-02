@@ -9,6 +9,7 @@ import { ReservationsComponent } from './pages/reservations/reservations.compone
 import { ObjectComponent } from './pages/object/object.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { authGuard } from './guard/auth.guard';
+import { TermsUseComponent } from './pages/terms-use/terms-use.component';
 
 export const routes: Routes =[
   {path: '', redirectTo: 'explore', pathMatch: 'full'},
@@ -20,5 +21,6 @@ export const routes: Routes =[
   {path: 'my-objects', component: MyObjectsComponent, canActivate: [authGuard]},
   {path: 'reservations', component: ReservationsComponent, canActivate: [authGuard]},
   {path: 'object', component: ObjectComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [authGuard]}
+  {path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
+  {path: 'terms', component: TermsUseComponent}
 ];
