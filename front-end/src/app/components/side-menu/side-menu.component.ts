@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from "@angular/router";
+import { AuthenticationService } from '../../services/auth/authentication.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -11,4 +12,11 @@ export class SideMenuComponent {
   @Input() sideMenuIsVisible: Boolean = false;
   @Input() optionMenuSelect : String = "Explorar";
   @Input() options!: String[];
+
+  public constructor(private authService : AuthenticationService) {
+  }
+
+  public logout(): void {
+    this.authService.logout();
+  }
 }

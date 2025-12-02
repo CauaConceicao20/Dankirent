@@ -11,17 +11,21 @@ export class UserService {
   public constructor(private storageService: StorageService) { }
 
   public createUser(userDataObject: any): User {
-    const id: number = Math.floor(Math.random() * 100);
     const user: User = {
-      id: id, name: userDataObject.name, password: userDataObject.password, email: userDataObject.email,
-      phone: userDataObject.phone, cfp: userDataObject.cpf
+      id: userDataObject.id, name: userDataObject.name, lastName: userDataObject.lastName, password: userDataObject.password, email: userDataObject.email,
+      phone: userDataObject.phone, birthday: userDataObject.birthday, cpf: userDataObject.cpf
     };
-    this.storageService.saveData(user, "registerUser");
+
+    const users = this.getAll();
+    users.push(user);
+
+    this.storageService.saveData(users, "registerUser");
 
     return user;
   }
 
   public getAll(): User[] {
-    return this.storageService.getData("registerUser") as User[];
+    const users = this.storageService.getData("registerUser");
+    return Array.isArray(users) ? users as User[] : [];
   }
 }

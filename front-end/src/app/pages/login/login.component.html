@@ -11,7 +11,7 @@
                 <label for="password">Senha:</label>
                 <input [(ngModel)]="password" type="password" id="password" name="password" required>
             </div>
-            <button class="btn-entrar" type="submit">Entrar</button>
+            <button class="btn-entrar" type="submit" (click)="authentication()">Entrar</button>
 
             <div class="text-redirect">
                 <p>Não tem uma conta? <a href="/register">Cadastra-se aqui</a></p>

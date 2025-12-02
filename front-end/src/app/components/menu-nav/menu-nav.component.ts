@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { AuthenticationService } from '../../services/auth/authentication.service';
 
 @Component({
   selector: 'app-menu-nav',
@@ -12,5 +13,12 @@ import { RouterLink } from '@angular/router';
 export class MenuNavComponent {
   @Input() menuVisible: Boolean = false;
   @Input() options!: String[];
+
+  public constructor(private authService: AuthenticationService) {
+  }
+
+  public logout(): void {
+    this.authService.logout();
+  }
 
 }

@@ -18,8 +18,8 @@ export class LoginComponent {
     private router: Router) { }
 
   public authentication(): void {
-    if (this.authService.login(this.login, this.password)) {
-      this.router.navigate(['/home']);
+    if(this.authService.login(this.login, this.password)) {
+      this.router.navigate(['/explore']);
     }
     else {
       console.error("Erro ao autenticar:");

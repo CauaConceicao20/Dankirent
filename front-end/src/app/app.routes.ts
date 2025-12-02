@@ -8,16 +8,17 @@ import { MyObjectsComponent } from './pages/my-objects/my-objects.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { ObjectComponent } from './pages/object/object.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { authGuard } from './guard/auth.guard';
 
 export const routes: Routes =[
-  {path: '', component: ExplorarComponent},
-  {path: 'login', component: LoginComponent},
+  {path: '', redirectTo: 'explore', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent,},
   {path: 'register', component: RegisterComponent},
-  {path: 'explorar', component: ExplorarComponent},
+  {path: 'explore', component: ExplorarComponent},
   {path: 'search', component: SearchComponent},
-  {path: 'announcet', component: AnnouncetComponent},
-  {path: 'my-objects', component: MyObjectsComponent},
-  {path: 'reservations', component: ReservationsComponent},
+  {path: 'announcet', component: AnnouncetComponent, canActivate: [authGuard]},
+  {path: 'my-objects', component: MyObjectsComponent, canActivate: [authGuard]},
+  {path: 'reservations', component: ReservationsComponent, canActivate: [authGuard]},
   {path: 'object', component: ObjectComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent, canActivate: [authGuard]}
 ];

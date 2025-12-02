@@ -25,6 +25,7 @@
             <a [class.active]="optionMenuSelect === 'my-objects'" routerLink="/my-objects">Meus
                 Objetos</a>
             <a [class.active]="optionMenuSelect === 'reservations'" routerLink="/reservations">Reservas</a>
+            <a (click)="logout()">Sair</a>
         </nav>
     </div>
 </aside>

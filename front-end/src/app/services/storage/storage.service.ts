@@ -7,13 +7,12 @@ import { User } from "../../models/user.model";
 
 export class StorageService {
 
-  public saveData(object : any, nameSpace : string): void {
-    const data: any = object;
-    localStorage.setItem(nameSpace , JSON.stringify(data));
-    console.log('Dados salvos no localStorage', data.nome);
+  public saveData(objects: any, nameSpace: string): void {
+    const data: any[] = objects;
+    localStorage.setItem(nameSpace, JSON.stringify(data));
   }
 
-  public getData(nameSpace : string): any | null {
+  public getData(nameSpace: string): any | null {
     const data = localStorage.getItem(nameSpace);
     if (data) {
       const dataObject: any = JSON.parse(data);
@@ -25,12 +24,12 @@ export class StorageService {
     return null;
   }
 
-  public clearUserData() {
+  public clearData(nameSpace : string) {
     try {
-      localStorage.removeItem('usuario');
+      localStorage.removeItem(nameSpace);
     } catch (error) {
       console.error('Erro ao remover do Local Storage', error);
     }
   }
-}  
+}
 

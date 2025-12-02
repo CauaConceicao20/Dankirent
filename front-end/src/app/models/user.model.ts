@@ -1,8 +1,10 @@
 export interface User {
-    id: Number | String,
-    name: String,
-    password: String,
-    email: String,
-    phone : String,
-    cfp : String
+    id: number | string,
+    name: string,
+    lastName: string,
+    password: string,
+    email: string,
+    phone: string,
+    cpf: string,
+    birthday: string
 }
