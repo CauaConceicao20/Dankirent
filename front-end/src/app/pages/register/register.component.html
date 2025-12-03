@@ -39,7 +39,8 @@
             <div class="input-group">
                 <div class="field">
                     <label for="dataNascimento">Data de nascimento:</label>
-                    <input [ngModel]="birthday | date:'yyyy-MM-dd'" type="date" id="dataNascimento" name="dataNascimento" required>
+                    <input [ngModel]="birthday | date:'yyyy-MM-dd'" type="date" id="dataNascimento"
+                        name="dataNascimento" required>
                 </div>
             </div>
 
@@ -50,7 +51,16 @@
                 </div>
             </div>
 
-            <button (click)="register()" class="btn-cadastrar" type="submit">Cadastrar</button>
+            <div class="checkbox-group">
+                <label class="checkbox-lgpd">
+                    <input type="checkbox" [(ngModel)]="isTermsAccepted" name="termsAccepted" />
+                    <span>Li e aceito os termos de privacidade</span>
+                </label>
+            </div>
+
+            <button (click)="register()" class="btn-cadastrar" type="submit" [disabled]="!isTermsAccepted">
+                Cadastrar
+            </button>
 
             <div class="text-redirect">
                 <p>Já tem uma conta? <a href="/login">Faça login aqui</a></p>

@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
+  public isTermsAccepted: boolean = false;
+
   public constructor(private userService: UserService, private router: Router) { }
 
   public name!: string;

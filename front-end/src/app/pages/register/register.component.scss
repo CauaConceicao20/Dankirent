@@ -20,6 +20,7 @@
         gap: 25px;
         max-width: 525px;
         height: auto;
+        margin: 10px;
         flex: 1;
 
         .input-group {
@@ -47,6 +48,22 @@
             color: #7d7e80;
         }
 
+        .checkbox-group {
+            margin-top: -10px;
+        }
+
+        .checkbox-lgpd {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #7d7e80;
+            font-size: 14px;
+
+            input {
+                width: 30px;
+            }
+        }
+
         .btn-cadastrar {
             border: none;
             border-radius: 5px;
@@ -57,6 +74,11 @@
             &:hover {
                 background-color: #1E40AF;
                 cursor: pointer;
+            }
+
+            &:disabled {
+                background-color: #9CB3E6;
+                cursor: not-allowed;
             }
         }
 
