@@ -1,15 +1,21 @@
 <main>
     <section class="section-login">
-        <form id="form-login">
+        <form [formGroup]="loginForm" (ngSubmit)="authentication()" id="form-login">
             <img src="img/logo-danki.png" alt="Logo Danki" class="logo">
             <div class="input-group">
-                <label for="email">Email:</label>
-                <input [(ngModel)]="login" type="email" id="email" name="email" required>
+                 <label for="email">Email:</label>
+                    <small *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+                        Email inválido.
+                    </small>
+                    <input id="email" type="email" formControlName="email">
             </div>
 
             <div class="input-group">
-                <label for="password">Senha:</label>
-                <input [(ngModel)]="password" type="password" id="password" name="password" required>
+                 <label for="password">Senha:</label>
+                    <small *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+                        Senha deve ter pelo menos 6 caracteres.
+                    </small>
+                    <input id="password" type="password" formControlName="password">
             </div>
             <button class="btn-entrar" type="submit" (click)="authentication()">Entrar</button>
 

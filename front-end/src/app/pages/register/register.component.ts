@@ -1,47 +1,64 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { User } from '../../models/user.model';
-import { UserService } from '../../services/user/user.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../../services/user/user.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, CommonModule],
+  standalone: true,
+  imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
 
-  public isTermsAccepted: boolean = false;
+  constructor(private userService: UserService, private router: Router) { }
 
-  public constructor(private userService: UserService, private router: Router) { }
-
-  public name!: string;
-  public lastname!: string;
-  public email!: string;
-  public phone!: string;
-  public cpf!: string;
-  public birthday!: string;
-  public password!: string;
+  form = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required]),
+    cpf: new FormControl('', [
+      Validators.required,
+      Validators.minLength(11),
+      Validators.maxLength(11)
+    ]),
+    birthday: new FormControl('', [Validators.required]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6)
+    ]),
+    termsAccepted: new FormControl(false, Validators.requiredTrue)
+  });
 
   public register(): void {
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    const formValue = this.form.value;
+
     const userDataObject: User = {
-      id: this.userService.getAll().length + 1 || 1,
-      name: this.name,
-      lastName: this.lastname,
-      email: this.email,
-      phone: this.phone,
-      cpf: this.cpf,
-      birthday: this.birthday,
-      password: this.password
+id: this.userService.getAll().length + 1 || 1,
+      name: formValue.name!,
+      lastName: formValue.lastname!,
+      email: formValue.email!,
+      phone: formValue.phone!,
+      cpf: formValue.cpf!,
+      birthday: formValue.birthday!,
+      password: formValue.password!,
     };
 
     if (this.userService.createUser(userDataObject)) {
       this.router.navigate(['/login']);
-    }
-    else {
+    } else {
       alert("Erro ao criar usuário");
-    };
+    }
   }
 }
