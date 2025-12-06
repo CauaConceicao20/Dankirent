@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-item',
@@ -22,4 +23,10 @@ export class CardItemComponent {
   @Input() rating!: number;
   @Input() reviewsCount!: number;
   @Input() delivery!: boolean;
+
+  public constructor(private router: Router) {}
+
+  public viewProduct(id: number) {
+    this.router.navigate(['/object', id]);
+  }
 }

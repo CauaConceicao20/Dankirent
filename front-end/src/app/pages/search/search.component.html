@@ -62,6 +62,7 @@
             <div class="search-result">
                 <app-card-item 
                 *ngFor="let product of products" 
+                [id]="product.id"
                 [title]="product.title" 
                 [category]="product.category"
                 [state]="product.state" 

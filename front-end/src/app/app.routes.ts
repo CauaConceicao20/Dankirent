@@ -20,7 +20,7 @@ export const routes: Routes =[
   {path: 'announcet', component: AnnouncetComponent, canActivate: [authGuard]},
   {path: 'my-objects', component: MyObjectsComponent, canActivate: [authGuard]},
   {path: 'reservations', component: ReservationsComponent, canActivate: [authGuard]},
-  {path: 'object', component: ObjectComponent},
+  {path: 'object/:id', component: ObjectComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
   {path: 'terms', component: TermsUseComponent}
 ];

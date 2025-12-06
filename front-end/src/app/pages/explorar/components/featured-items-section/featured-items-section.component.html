@@ -5,7 +5,7 @@
                 <h2>Objetos em destaque</h2>
                 <p>Descubra os itens mais populares da nossa comunidade</p>
             </div>
-            <a href=""><span>Ver todos</span>
+            <a href="/search"><span>Ver todos</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-arrow-right" aria-hidden="true">
@@ -17,6 +17,7 @@
         <div class="area-cards">
             <app-card-item 
             *ngFor="let card of cards" 
+            [id]="card.id"
             [title]="card.title" 
             [category]="card.category"
             [state]="card.state" 
@@ -29,7 +30,7 @@
             [rating]="card.rating"
             [reviewsCount]="card.reviewsCount"
             [delivery]="card.delivery">
-            </app-card-item>
+        </app-card-item>
         </div>
 
     </div>

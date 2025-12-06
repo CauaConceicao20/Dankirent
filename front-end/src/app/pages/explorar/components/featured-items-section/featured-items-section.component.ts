@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CardItemComponent } from '../../../../components/card-item/card-item.component';
 import { CommonModule } from '@angular/common';
 import { AnimateOnScrollDirective } from '../../../../directives/animate-on-scroll.directive';
+import { Router } from '@angular/router';
 
 
 
@@ -12,6 +13,11 @@ import { AnimateOnScrollDirective } from '../../../../directives/animate-on-scro
   styleUrl: './featured-items-section.component.scss'
 })
 export class FeaturedItemsSectionComponent {
+
+    public constructor(private router: Router) {
+
+    }
+
      cards = [
     {
       id: 1,
@@ -75,4 +81,8 @@ export class FeaturedItemsSectionComponent {
       delivery: true
     }
   ];
+
+  public viewProduct(id: number) {
+    this.router.navigate(['/object', id]);
+  }
 }
