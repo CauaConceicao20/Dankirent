@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/user/user.service';
+import { NgxMaskDirective } from 'ngx-mask';
 import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, NgxMaskDirective],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
