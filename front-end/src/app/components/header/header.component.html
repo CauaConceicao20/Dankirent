@@ -48,11 +48,12 @@
             </app-side-menu>
         </div>
 
-        <div class="conteiner-user" (click)="menuDesktopIsVisible = !menuDesktopIsVisible">
+
+        <div class="conteiner-user">
             <div class="container-btn-enter" *ngIf="!isLogged">
                 <a href="/login"><button class="btn-menu">Entrar</button></a>
             </div>
-            <div *ngIf="isLogged" class="profile-user">
+            <div class="profile-user" *ngIf="isLogged" (click)="menuDesktopIsVisible = !menuDesktopIsVisible">
                 <div class="container-img-profile">
                     <img src="" alt="">
                 </div>
