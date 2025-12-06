@@ -3,10 +3,10 @@
         <div class="logo">
             <a href=""><img src="img/logo-danki.png" alt="Logo"></a>
         </div>
-        <nav class="nav-links-off">
+        <nav class="nav-links-off" *ngIf="!isLogged">
             <a [class.active]="optionNavSelect === 'explorar'" href="explore">Explorar</a>
-            <a [class.active]="optionNavSelect === 'search'" href="search"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            <a [class.active]="optionNavSelect === 'search'" href="search"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true">
                     <path d="m21 21-4.34-4.34"></path>
                     <circle cx="11" cy="11" r="8"></circle>
@@ -14,7 +14,7 @@
             </a>
         </nav>
 
-        <nav class="nav-links-on">
+        <nav class="nav-links-on" *ngIf="isLogged">
             <a [class.active]="optionNavSelect === 'explorar'" href="explore">Explorar</a>
             <a [class.active]="optionNavSelect === 'search'" href="/search"><svg xmlns="http://www.w3.org/2000/svg"
                     width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -35,7 +35,7 @@
         </nav>
 
         <div class="container-hamburguer" (click)="menuMobileIsVisible = !menuMobileIsVisible">
-            <div class="container-btn-enter">
+            <div class="container-btn-enter" *ngIf="!isLogged">
                 <a href="/login"><button class="btn-menu">Entrar</button></a>
             </div>
             <button class="botao-hamburguer">
@@ -49,7 +49,10 @@
         </div>
 
         <div class="conteiner-user" (click)="menuDesktopIsVisible = !menuDesktopIsVisible">
-            <div class="profile-user">
+            <div class="container-btn-enter" *ngIf="!isLogged">
+                <a href="/login"><button class="btn-menu">Entrar</button></a>
+            </div>
+            <div *ngIf="isLogged" class="profile-user">
                 <div class="container-img-profile">
                     <img src="" alt="">
                 </div>
@@ -63,6 +66,5 @@
             <app-menu-nav [menuVisible]="menuDesktopIsVisible" [options]="optionsDesktop">
             </app-menu-nav>
         </div>
-
     </div>
 </header>

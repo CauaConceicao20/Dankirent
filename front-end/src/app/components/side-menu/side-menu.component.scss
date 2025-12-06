@@ -36,7 +36,7 @@
     }
 
     .conteiner-user {
-        display: none;
+        display: flex;
         position: relative;
         align-items: center;
         gap: 15px;
@@ -141,6 +141,7 @@
         }
     }
 
+    /*
     .nav-links-off {
         display: flex;
     }
@@ -148,6 +149,7 @@
     .nav-links-on {
         display: none;
     }
+        */
 }
 
 #overlay {

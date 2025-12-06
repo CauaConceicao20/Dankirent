@@ -1,5 +1,5 @@
 <aside class="side-menu" [class.active]="sideMenuIsVisible">
-    <a class="conteiner-user">
+    <a *ngIf="isLogged" class="conteiner-user">
         <div class="profile-user">
             <div class="container-img-profile">
                 <img src="" alt="">
@@ -14,11 +14,11 @@
         <a href="/login"><button class="btn-menu">Entrar</button></a>
     </div>
     <div class="navegation-hamburguer">
-        <nav class="nav-links-off">
+        <nav class="nav-links-off" *ngIf="!isLogged">
             <a [class.active]="optionMenuSelect === 'explorar'" href="">Explorar</a>
             <a [class.active]="optionMenuSelect === 'search'" href=""><span>Buscar</span></a>
         </nav>
-        <nav class="nav-links-on">
+        <nav class="nav-links-on" *ngIf="isLogged">
             <a [class.active]="optionMenuSelect === 'explorar'" routerLink="">Explorar</a>
             <a [class.active]="optionMenuSelect === 'search'" routerLink="/search"><span>Buscar</span></a>
             <a [class.active]="optionMenuSelect === 'announcet'" routerLink="/announcet"><span>Anunciar</span></a>
