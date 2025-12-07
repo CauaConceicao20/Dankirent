@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
 
-
   public constructor(private authService: AuthenticationService,
     private router: Router) { }
 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
 import { CarouselComponent } from '../../components/carousel/carousel.component';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../../models/product.mode';
+import { Product } from '../../models/product.model';
 import { CommonModule, Location } from '@angular/common';
 
 @Component({

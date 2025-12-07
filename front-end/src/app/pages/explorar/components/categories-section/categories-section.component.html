@@ -5,32 +5,32 @@
                 <p>Encontre Exatamente oque você precisa</p >
             </div>
             <div class="categories-list">
-                <div class="category-item" appAnimateOnScroll [style.--delay]="'500ms'">
+                <div (click)="navigateToCategory('Ferramentas')" class="category-item" appAnimateOnScroll [style.--delay]="'500ms'">
                     <div class="img-category">🔧</div>
                     <h3>Ferramentas</h3>
                     <p>150+ itens</p>
                 </div>
-                <div class="category-item" appAnimateOnScroll [style.--delay]="'400ms'">
+                <div (click)="navigateToCategory('Camping')" class="category-item" appAnimateOnScroll [style.--delay]="'400ms'">
                     <div class="img-category">⛺</div>
                      <h3>Camping</h3>
                     <p>80+ itens</p>
                 </div>
-                <div class="category-item" appAnimateOnScroll [style.--delay]="'300ms'">
+                <div (click)="navigateToCategory('Instrumentos')" class="category-item" appAnimateOnScroll [style.--delay]="'300ms'">
                     <div class="img-category">🎸</div>
                      <h3>Instrumentos</h3>
                     <p>60+ itens</p>
                 </div>
-                <div class="category-item" appAnimateOnScroll [style.--delay]="'200ms'">
+                <div (click)="navigateToCategory('Esportes')" class="category-item" appAnimateOnScroll [style.--delay]="'200ms'">
                     <div class="img-category">⚽</div>
                      <h3>Esportes</h3>
                     <p>120+ itens</p>
                 </div>
-                <div class="category-item" appAnimateOnScroll [style.--delay]="'100ms'">
+                <div (click)="navigateToCategory('Eletrônicos')" class="category-item" appAnimateOnScroll [style.--delay]="'100ms'">
                     <div class="img-category">📱</div>
                      <h3>Eletrônicos</h3>
                     <p>90+ itens</p>
                 </div>
-                <div class="category-item" appAnimateOnScroll [style.--delay]="'0ms'">
+                <div (click)="navigateToCategory('Casa')"class="category-item" appAnimateOnScroll [style.--delay]="'0ms'">
                     <div class="img-category">🏠</div>
                      <h3>Casa</h3>
                     <p>200+ itens</p>

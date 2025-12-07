@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AnimateOnScrollDirective } from '../../../../directives/animate-on-scroll.directive';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories-section',
@@ -9,4 +10,11 @@ import { AnimateOnScrollDirective } from '../../../../directives/animate-on-scro
 })
 export class CategoriesSectionComponent {
 
+  public constructor(private router : Router) {}
+  
+  public navigateToCategory(category : string) {
+    this.router.navigate(['/search'], {
+      queryParams: {category}
+    });
+  }
 }

@@ -8,16 +8,24 @@ import { UserService } from '../user/user.service';
 })
 export class AuthenticationService {
 
-  public isLogged = signal<boolean>(false);
+  public loggedSignal = signal<boolean>(false);
 
-  constructor(private storageService: StorageService, private userService: UserService) { }
-
+  constructor(private storageService: StorageService, private userService : UserService) {
+    const user = this.storageService.getData("loginUser");
+    this.loggedSignal.set(!!user);
+  }
   public login(email: string, password: string): Boolean {
     const users: User[] = this.userService.getAll();
 
     if (users && email && password) {
       if (email === "admin@hotmail.com" && password === "123456") {
-        this.isLogged.set(true);
+        const user: any = {
+          id: 0,
+          name: "admin",
+          email: email,
+        }
+        this.storageService.saveData(user, "loginUser");
+        this.loggedSignal.set(true);
         return true;
       }
       for (let user of users) {
@@ -26,7 +34,7 @@ export class AuthenticationService {
           console.log("criando loginUser");
           this.storageService.saveData(user, "loginUser");
           console.log("loginUser criado");
-          this.isLogged.set(true);
+          this.loggedSignal.set(true);
           return true;
         }
       }
@@ -36,6 +44,10 @@ export class AuthenticationService {
 
   public logout(): void {
     this.storageService.clearData("loginUser");
-    this.isLogged.set(false);
+    this.loggedSignal.set(false);
+  }
+
+  public isLogged(): boolean {
+    return this.loggedSignal();
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../models/product.mode';
+import { Product } from '../../models/product.model';
 import { StorageService } from '../storage/storage.service';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class ObjectService {
         title: "Prancha de Stand Up Paddle",
         category: "Esportes",
         state: "Novo",
-        imageUrl: ["https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg",  "https://images.pexels.com/photos/1654698/pexels-photo-1654698.jpeg"],
+        imageUrl: ["https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg", "https://images.pexels.com/photos/1654698/pexels-photo-1654698.jpeg"],
         description: "Prancha inflável de SUP com bomba, remo e kit de reparo. Ideal para lagos, rios e mar calmo. Fácil transporte",
         address: "Rio de Janeiro",
         uf: "RJ",
@@ -62,7 +62,7 @@ export class ObjectService {
       {
         id: 4,
         title: "Furadeira de Impacto Profissional",
-        category: "Ferrmamentas",
+        category: "Ferramentas",
         state: "Seminovo",
         imageUrl: ["https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg"],
         description: "Furadeira de impacto Bosch com maleta e kit de brocas. Ideal para trabalhos em concreto, madeira e metal.",
@@ -77,5 +77,33 @@ export class ObjectService {
     ];
     localStorage.setItem('products', JSON.stringify(initialProducts));
     this.products = initialProducts;
+  }
+
+  public getProducts(): Product[] {
+    const products: Product[] = this.storageService.getData('products');
+    return products || [];
+  }
+
+  public searchProducts(name: string, category: string, city: string, priceMax: number,
+    stateObject: string) : Product[] {
+    return this.getProducts().filter((product: Product) => {
+
+      const matchName =
+        !name || product.title.toLowerCase().includes(name.toLowerCase());
+
+      const matchCategory =
+        !category || product.category.toLowerCase().includes(category.toLowerCase());
+
+      const matchCity =
+        !city || product.address.toLowerCase().includes(city.toLowerCase());
+
+      const matchPrice =
+        !priceMax || product.price <= priceMax;
+
+      const matchState =
+        !stateObject || product.state.toLowerCase() === stateObject.toLowerCase();
+
+      return matchName && matchCategory && matchCity && matchPrice && matchState;
+    });
   }
 }

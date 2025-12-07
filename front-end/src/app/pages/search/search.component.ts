@@ -2,78 +2,67 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { CardItemComponent } from '../../components/card-item/card-item.component';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router  } from '@angular/router';
+import { ObjectService } from '../../services/objects/object.service';
+import { Product } from '../../models/product.model';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-search',
-  imports: [CommonModule ,HeaderComponent, CardItemComponent],
+  imports: [CommonModule, HeaderComponent, CardItemComponent, FormsModule,
+    ReactiveFormsModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
 
-  public search : String = "search";
+  public form: FormGroup;
+  public products: Product[] = [];
+  public search: string = "search";
 
-  public products = [
-    {
-      id: 1,
-      title: "Prancha de Stand Up Paddle",
-      category: "Esportes",
-      state: "Novo",
-      imageUrl: "https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg",
-      description: "Prancha inflável de SUP com bomba, remo e kit de reparo. Ideal para lagos, rios e mar calmo. Fácil transporte",
-      address: "Rio de Janeiro",
-      uf: "RJ",
-      price: 60.00,
-      priceHour: 10.00,
-      rating: 4.9,
-      reviewsCount: 15,
-      delivery: true
-    },
-    {
-      id: 2,
-      title: "Violão Yamaha Clássico",
-      category: "Instrumentos",
-      state: "Semi-novo",
-      imageUrl: "https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg",
-      description: "Violão clássico Yamaha C40 em excelente estado. Cordas novas e afinado. Ideal para iniciantes e estudantes de",
-      address: "São Paulo",
-      uf: "SP",
-      price: 30.00,
-      priceHour: 6.00,
-      rating: 5.0,
-      reviewsCount: 5,
-      delivery: false
-    },
-    {
-      id: 3,
-      title: "Barraca de Camping 4 Pessoas",
-      category: "Camping",
-      state: "Usado",
-      imageUrl: "https://images.pexels.com/photos/699558/pexels-photo-699558.jpeg",
-      description: "Barraca Coleman para 4 pessoas, impermeável e com avancê. Perfeita para acampamentos e festivais. Inclui kit",
-      address: "São Paulo",
-      uf: "SP",
-      price: 40.00,
-      priceHour: 8.00,
-      rating: 4.5,
-      reviewsCount: 8,
-      delivery: true
-    },
+  constructor(private fb: FormBuilder, private objectService: ObjectService, private router: Router,
+    private route: ActivatedRoute) {
+    this.form = this.fb.group({
+      title: [''],
+      category: [''],
+      city: [''],
+      stateObject: [''],
+      priceMax: ['']
+    });
+  }
 
-    {
-      id: 4,
-      title: "Furadeira de Impacto Profissional",
-      category: "Ferrmamentas",
-      state: "Seminovo",
-      imageUrl: "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg",
-      description: "Furadeira de impacto Bosch com maleta e kit de brocas. Ideal para trabalhos em concreto, madeira e metal.",
-      address: "São Paulo",
-      uf: "SP",
-      price: 25.00,
-      priceHour: 5.00,
-      rating: 4.8,
-      reviewsCount: 12,
-      delivery: true
-    }
-  ];
+  public ngOnInit(): void {
+    this.products = this.objectService.getProducts();
+
+    this.route.queryParams.subscribe(params => {
+      const category = params['category'];
+      if (category) {
+        this.form.get('category')?.setValue(category);
+        this.searchProducts();
+      }
+    });
+
+    this.form.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged()
+      )
+      .subscribe(_ => {
+        this.searchProducts();
+      });
+  }
+
+  public searchProducts(): void {
+    const { title, category, city, priceMax, stateObject } = this.form.value;
+
+    this.products = this.objectService.searchProducts(
+      title ?? "",
+      category ?? "",
+      city ?? "",
+      Number(priceMax) || 0,
+      stateObject ?? ""
+    );
+  }
 }
