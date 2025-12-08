@@ -16,7 +16,7 @@
 
         <div class="area-cards">
             <app-card-item 
-            *ngFor="let card of cards" 
+            *ngFor="let card of cards | slice:0:4" 
             [id]="card.id"
             [title]="card.title" 
             [category]="card.category"

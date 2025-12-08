@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         <p>Total de Objetos</p>
-                        <p class="statistical-value">4</p>
+                        <p class="statistical-value">{{products.length}}</p>
                     </div>
                 </div>
                 <div class="stats-card">
@@ -49,7 +49,7 @@
                     </div>
                     <div>
                         <p>Disponiveis</p>
-                        <p class="statistical-value">4</p>
+                        <p class="statistical-value">{{products.length}}</p>
                     </div>
                 </div>
                 <div class="stats-card">
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div *ngIf="products?.length == 0" class="object-not-found">
+            <div *ngIf="products.length == 0" class="object-not-found">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-package w-16 h-16 text-gray-400 mx-auto mb-4" aria-hidden="true">
@@ -92,12 +92,20 @@
                 </button>
             </div>
 
-            <div *ngIf="products?.length != 0" class="area-cards">
-                <app-card-item *ngFor="let product of products" [title]="product.title" [category]="product.category"
-                    [state]="product.state" [imageUrl]="product.imageUrl" [description]="product.description"
-                    [address]="product.address" [uf]="product.uf" [price]="product.price"
-                    [priceHour]="product.priceHour" [rating]="product.rating" [reviewsCount]="product.reviewsCount"
-                    [delivery]="product.delivery">
+            <div *ngIf="products.length != 0" class="area-cards">
+                <app-card-item *ngFor="let product of products" 
+                [id]="product.id",
+                [title]="product.title" 
+                [category]="product.category"
+                [state]="product.state" 
+                [imageUrl]="product.imageUrl[0]"
+                [description]="product.description"
+                [address]="product.address" 
+                [uf]="product.uf"
+                [price]="product.price"
+                [priceHour]="product.priceHour" 
+                [rating]="product.rating" [reviewsCount]="product.reviewsCount"
+                [delivery]="product.delivery">
                 </app-card-item>
             </div>
         </div>

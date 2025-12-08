@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { StorageService } from '../storage/storage.service';
 import { User } from '../../models/user.model';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -105,6 +106,18 @@ export class ObjectService {
   public getProducts() : Product[] {
     const products: Product[] = this.storageService.getData('products');
     return products || [];
+  }
+
+  public getProductsOfUser() : Product[] {
+    const userLogged : User = this.storageService.getData('loginUser');
+    const productsOfUser: Product[] = [];
+
+    for(let product of this.getProducts()) {
+      if(product.idUser == userLogged.id) {
+          productsOfUser.push(product);
+      }
+    }
+    return productsOfUser;
   }
 
   public searchProducts(name: string, category: string, city: string, priceMax: number,
