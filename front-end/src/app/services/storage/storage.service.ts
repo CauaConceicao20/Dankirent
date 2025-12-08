@@ -7,26 +7,26 @@ import { User } from "../../models/user.model";
 
 export class StorageService {
 
-  public saveData(objects: any, nameSpace: string): void {
+  public saveData(objects: any, key: string): void {
     const data: any[] = objects;
-    localStorage.setItem(nameSpace, JSON.stringify(data));
+    localStorage.setItem(key, JSON.stringify(data));
   }
 
-  public getData(nameSpace: string): any | null {
-    const data = localStorage.getItem(nameSpace);
+  public getData(key: string): any | null {
+    const data = localStorage.getItem(key);
     if (data) {
       const dataObject: any = JSON.parse(data);
       console.log('Dados carregados:', dataObject);
       return dataObject;
     } else {
-      console.log('Nenhum dado encontrado no localStorage. ', nameSpace);
+      console.log('Nenhum dado encontrado no localStorage. ', key);
     }
     return null;
   }
 
-  public clearData(nameSpace : string) {
+  public clearData(key : string) : void {
     try {
-      localStorage.removeItem(nameSpace);
+      localStorage.removeItem(key);
     } catch (error) {
       console.error('Erro ao remover do Local Storage', error);
     }

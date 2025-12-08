@@ -11,5 +11,6 @@ export interface Product {
       priceHour: number,
       rating: number,
       reviewsCount: number,
-      delivery: boolean
+      delivery: boolean,
+      idUser : number
 }

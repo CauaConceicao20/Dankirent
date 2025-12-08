@@ -46,7 +46,7 @@ export class RegisterComponent {
     const formValue = this.form.value;
 
     const userDataObject: User = {
-id: this.userService.getAll().length + 1 || 1,
+      id: this.userService.getAll().length + 1 || 1,
       name: formValue.name!,
       lastName: formValue.lastname!,
       email: formValue.email!,
