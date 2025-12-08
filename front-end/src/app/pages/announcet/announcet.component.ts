@@ -5,6 +5,9 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { ObjectService } from '../../services/objects/object.service';
 import { ImageService } from '../../services/image-service/image.service';
 import { Product } from '../../models/product.model';
+import { ModalComponent } from '../../components/modal/modal.component';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-announcet',
@@ -21,7 +24,9 @@ export class AnnouncetComponent {
   public announcet: String = "announcet";
   public previews: string[] = [];
 
-  constructor(private objectService: ObjectService, private imageService: ImageService) { }
+  constructor(private objectService: ObjectService, private imageService: ImageService,
+    private router: Router
+  ) { }
 
   public form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -45,7 +50,7 @@ export class AnnouncetComponent {
     delivery: new FormControl(false)
   });
 
-  public selectFiles() : void {
+  public selectFiles(): void {
     this.fileInput.nativeElement.click();
   }
 
@@ -67,15 +72,15 @@ export class AnnouncetComponent {
     }
   }
 
-  public onDragOver(event: DragEvent) : void {
+  public onDragOver(event: DragEvent): void {
     event.preventDefault();
   }
 
-  public removeImage(index: number) : void {
+  public removeImage(index: number): void {
     this.previews.splice(index, 1);
   }
 
-  public submit() : void {
+  public submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -95,14 +100,21 @@ export class AnnouncetComponent {
       rating: 0,
       reviewsCount: 0,
       delivery: this.form.value.delivery!,
-      idUser : 0
+      idUser: 0
     };
 
     this.objectService.createProduct(product);
 
-    this.form.reset();
-    this.previews = []; 
-
-    console.log("Produto cadastrado com sucesso!");
+    ModalComponent.open({
+      title: "Produto cadastrado!",
+      message: "Seu anúncio foi criado com sucesso.",
+      confirmText: "Ok",
+      cancelText: null,
+      action: () => {
+        this.form.reset();
+        this.previews = [];
+        this.router.navigate(['/my-objects']);
+      }
+    });
   }
 }

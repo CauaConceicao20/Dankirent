@@ -13,7 +13,7 @@ export class ObjectService {
   public constructor(private storageService: StorageService) { }
 
   public inicializarProdutos() : void {
-    if(!this.getProducts()) {
+    if(this.getProducts() != undefined && this.getProducts().length == 0) {
       const initialProducts: Product[] = [
         {
           id: 1,
