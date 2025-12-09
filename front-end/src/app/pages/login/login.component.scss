@@ -43,6 +43,13 @@
             padding-bottom: 2px;
         }
 
+        .error-message {
+            color: #dc2626;
+            font-size: 0.75rem;
+            margin-top: 4px;
+            display: block;
+        }
+
         .btn-entrar {
             border: none;
             border-radius: 5px;
@@ -61,4 +68,10 @@
             color: #7d7e80;
         }
     }
+}
+.error-message {
+    color: #c0392b;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    display: block;
 }

@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { UserService } from '../../services/user/user.service';
 import { NgxMaskDirective } from 'ngx-mask';
 import { User } from '../../models/user.model';
+import { ModalComponent } from '../../components/modal/modal.component';
 
 @Component({
   selector: 'app-register',
@@ -40,6 +41,12 @@ export class RegisterComponent {
 
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      ModalComponent.open({
+        title: 'Formulário inválido',
+        message: 'Por favor, corrija os erros antes de continuar.',
+        confirmText: 'Ok',
+        cancelText: null
+      });
       return;
     }
 
@@ -58,10 +65,52 @@ export class RegisterComponent {
       registerMoment : ""
     };
 
-    if (this.userService.createUser(userDataObject)) {
-      this.router.navigate(['/login']);
-    } else {
-      alert("Erro ao criar usuário");
+    try {
+      this.userService.createUser(userDataObject);
+      ModalComponent.open({
+        title: 'Cadastro realizado',
+        message: 'Usuário criado com sucesso. Faça login para continuar.',
+        confirmText: 'Ok',
+        cancelText: null,
+        action: () => {
+          this.router.navigate(['/login']);
+        }
+      });
+    } catch (error) {
+      ModalComponent.open({
+        title: 'Erro',
+        message: 'Erro ao criar usuário. Tente novamente.',
+        confirmText: 'Ok',
+        cancelText: null
+      });
     }
+  }
+
+  public getErrorMessage(fieldName: string): string {
+    const control = this.form.get(fieldName);
+    if (!control || !control.errors || !control.touched) return '';
+
+    if (control.errors['required']) return `${this.getFieldLabel(fieldName)} é obrigatório`;
+    if (control.errors['email']) return 'Email inválido';
+    if (control.errors['minlength']) return `Mínimo de ${control.errors['minlength'].requiredLength} caracteres`;
+    if (control.errors['maxlength']) return `Máximo de ${control.errors['maxlength'].requiredLength} caracteres`;
+    if (control.errors['pattern']) {
+      if (fieldName === 'cpf') return 'CPF inválido';
+    }
+    if (control.errors['requiredTrue']) return 'Você precisa aceitar os termos';
+    return '';
+  }
+
+  private getFieldLabel(field: string): string {
+    const labels: { [key: string]: string } = {
+      name: 'Nome',
+      lastname: 'Sobrenome',
+      email: 'Email',
+      phone: 'Telefone',
+      cpf: 'CPF',
+      birthday: 'Data de nascimento',
+      password: 'Senha'
+    };
+    return labels[field] || field;
   }
 }

@@ -7,68 +7,68 @@
             <div class="input-group">
                 <div class="field">
                     <label for="nome">Nome:</label>
-                    <small *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+                    <input id="nome" type="text" formControlName="name">
+                        <small *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
                         Minimo de 3 caracteres.
                     </small>
-                    <input id="nome" type="text" formControlName="name">
                 </div>
 
                 <div class="field">
                     <label for="sobrenome">Sobrenome:</label>
-                    <small *ngIf="form.get('lastname')?.touched && form.get('lastname')?.invalid">
+                    <input id="sobrenome" type="text" formControlName="lastname">
+                     <small *ngIf="form.get('lastname')?.touched && form.get('lastname')?.invalid">
                         Minimo de 3 caracteres.
                     </small>
-                    <input id="sobrenome" type="text" formControlName="lastname">
                 </div>
             </div>
 
             <div class="input-group">
                 <div class="field">
                     <label for="email">Email:</label>
-                    <small *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+                    <input id="email" type="email" formControlName="email">
+                     <small *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
                         Email inválido.
                     </small>
-                    <input id="email" type="email" formControlName="email">
                 </div>
             </div>
 
             <div class="input-group">
                 <div class="field">
                     <label for="telefone">Telefone:</label>
+                    <input formControlName="phone" placeholder="Telefone" mask="(00) 00000-0000">
                     <small *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid">
                         Telefone inválido.
                     </small>
-                    <input formControlName="phone" placeholder="Telefone" mask="(00) 00000-0000">
                 </div>
             </div>
 
             <div class="input-group">
                 <div class="field">
                     <label for="cpf">CPF:</label>
-                    <small *ngIf="form.get('cpf')?.touched && form.get('cpf')?.invalid">
+                    <input formControlName="cpf" placeholder="CPF" mask="000.000.000-00">
+                        <small *ngIf="form.get('cpf')?.touched && form.get('cpf')?.invalid">
                         CPF deve ter 11 números.
                     </small>
-                    <input formControlName="cpf" placeholder="CPF" mask="000.000.000-00">
                 </div>
             </div>
 
             <div class="input-group">
                 <div class="field">
                     <label for="dataNascimento">Data de nascimento:</label>
+                    <input type="date" formControlName="birthday" placeholder="Data">
                     <small *ngIf="form.get('birthday')?.touched && form.get('birthday')?.invalid">
                         Data de nascimento invalida.
                     </small>
-                    <input type="date" formControlName="birthday" placeholder="Data" >
                 </div>
             </div>
 
             <div class="input-group">
                 <div class="field">
                     <label for="password">Senha:</label>
+                    <input id="password" type="password" formControlName="password">
                     <small *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
                         Senha deve ter pelo menos 6 caracteres.
                     </small>
-                    <input id="password" type="password" formControlName="password">
                 </div>
             </div>
 

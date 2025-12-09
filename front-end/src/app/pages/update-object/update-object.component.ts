@@ -27,22 +27,22 @@ export class UpdateObjectComponent implements OnInit {
   private productId: number | null = null;
 
   public form = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    description: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+    description: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]),
 
     category: new FormControl('', [Validators.required]),
     condition: new FormControl('', [Validators.required]),
 
-    priceDay: new FormControl(0, [Validators.required]),
-    priceHour: new FormControl(0, [Validators.required]),
+    priceDay: new FormControl(0, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]),
+    priceHour: new FormControl(0, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]),
 
-    address: new FormControl('', [Validators.required]),
-    city: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    city: new FormControl('', [Validators.required, Validators.minLength(2)]),
     stay: new FormControl('', [Validators.required]),
-    zipCode: new FormControl('', []),
+    zipCode: new FormControl('', [Validators.pattern(/^\d{5}-?\d{3}$|^$/)]),
 
-    minDays: new FormControl(null),
-    maxDays: new FormControl(null),
+    minDays: new FormControl(null, [Validators.pattern(/^\d+$|^$/)]),
+    maxDays: new FormControl(null, [Validators.pattern(/^\d+$|^$/)]),
 
     localPickup: new FormControl(false),
     delivery: new FormControl(false)
@@ -54,15 +54,29 @@ export class UpdateObjectComponent implements OnInit {
   public ngOnInit(): void {
     this.productId = Number(this.route.snapshot.paramMap.get('id')) || null;
     if (!this.productId) {
-      alert('ID do produto inválido');
-      this.router.navigate(['/my-objects']);
+      ModalComponent.open({
+        title: 'Erro ao carregar produto',
+        message: 'ID do produto inválido. Redirecionando...',
+        confirmText: 'Ok',
+        cancelText: null,
+        action: () => {
+          this.router.navigate(['/my-objects']);
+        }
+      });
       return;
     }
 
     const product = this.objectService.getProducts().find(p => p.id === this.productId);
     if (!product) {
-      alert('Produto não encontrado');
-      this.router.navigate(['/my-objects']);
+      ModalComponent.open({
+        title: 'Produto não encontrado',
+        message: 'O produto que você tentou editar não existe. Redirecionando...',
+        confirmText: 'Ok',
+        cancelText: null,
+        action: () => {
+          this.router.navigate(['/my-objects']);
+        }
+      });
       return;
     }
 
@@ -93,7 +107,12 @@ export class UpdateObjectComponent implements OnInit {
 
     const canAdd = 5 - this.previews.length;
     if (canAdd <= 0) {
-      alert('Limite de 5 imagens atingido');
+      ModalComponent.open({
+        title: 'Limite de imagens atingido',
+        message: 'Você já adicionou o máximo de 5 imagens.',
+        confirmText: 'Ok',
+        cancelText: null
+      });
       event.target.value = null;
       return;
     }
@@ -109,7 +128,12 @@ export class UpdateObjectComponent implements OnInit {
       const files = event.dataTransfer.files;
       const canAdd = 5 - this.previews.length;
       if (canAdd <= 0) {
-        alert('Limite de 5 imagens atingido');
+        ModalComponent.open({
+          title: 'Limite de imagens atingido',
+          message: 'Você já adicionou o máximo de 5 imagens.',
+          confirmText: 'Ok',
+          cancelText: null
+        });
         return;
       }
       const converted = await this.imageService.convertFiles(files, canAdd);
@@ -128,16 +152,32 @@ export class UpdateObjectComponent implements OnInit {
   public submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      ModalComponent.open({
+        title: "Formulário inválido",
+        message: "Por favor, corrija os erros nos campos obrigatórios antes de continuar.",
+        confirmText: "Ok",
+        cancelText: null
+      });
       return;
     }
 
     if (this.previews.length === 0) {
-      alert('É necessário ao menos uma foto');
+      ModalComponent.open({
+        title: "Nenhuma imagem adicionada",
+        message: "É necessário manter pelo menos uma foto do objeto.",
+        confirmText: "Ok",
+        cancelText: null
+      });
       return;
     }
 
     if (!this.originalProduct) {
-      alert('Produto original não carregado');
+      ModalComponent.open({
+        title: "Erro ao carregar produto",
+        message: "Produto original não carregado. Por favor, tente novamente.",
+        confirmText: "Ok",
+        cancelText: null
+      });
       return;
     }
 
@@ -173,8 +213,45 @@ export class UpdateObjectComponent implements OnInit {
       });
 
     } catch (error) {
-      alert('Erro ao atualizar produto: ' + error);
+      ModalComponent.open({
+        title: 'Erro ao atualizar',
+        message: 'Ocorreu um erro ao salvar as alterações. Tente novamente.',
+        confirmText: 'Ok',
+        cancelText: null
+      });
     }
+  }
+
+  public getErrorMessage(fieldName: string): string {
+    const control = this.form.get(fieldName);
+    if (!control || !control.errors || !control.touched) return '';
+
+    if (control.errors['required']) return `${this.getFieldLabel(fieldName)} é obrigatório`;
+    if (control.errors['minlength']) return `Mínimo de ${control.errors['minlength'].requiredLength} caracteres`;
+    if (control.errors['maxlength']) return `Máximo de ${control.errors['maxlength'].requiredLength} caracteres`;
+    if (control.errors['pattern']) {
+      if (fieldName.includes('price') || fieldName.includes('Days')) return 'Digite um valor válido';
+      if (fieldName === 'zipCode') return 'CEP inválido (formato: 00000-000)';
+    }
+    return '';
+  }
+
+  private getFieldLabel(field: string): string {
+    const labels: { [key: string]: string } = {
+      title: 'Título',
+      description: 'Descrição',
+      category: 'Categoria',
+      condition: 'Condição',
+      priceDay: 'Preço por dia',
+      priceHour: 'Preço por hora',
+      address: 'Endereço',
+      city: 'Cidade',
+      stay: 'Estado',
+      zipCode: 'CEP',
+      minDays: 'Mínimo de dias',
+      maxDays: 'Máximo de dias'
+    };
+    return labels[field] || field;
   }
 
   public back() {

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -25,26 +25,26 @@ export class AnnouncetComponent {
   public previews: string[] = [];
 
   constructor(private objectService: ObjectService, private imageService: ImageService,
-    private router: Router
+    private router: Router, private location : Location
   ) { }
 
   public form = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    description: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+    description: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]),
 
     category: new FormControl('', [Validators.required]),
     condition: new FormControl('', [Validators.required]),
 
-    priceDay: new FormControl('', [Validators.required]),
-    priceHour: new FormControl('', [Validators.required]),
+    priceDay: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]),
+    priceHour: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]),
 
-    address: new FormControl('', [Validators.required]),
-    city: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    city: new FormControl('', [Validators.required, Validators.minLength(2)]),
     stay: new FormControl('', [Validators.required]),
-    zipCode: new FormControl('', []),
+    zipCode: new FormControl('', [Validators.pattern(/^\d{5}-?\d{3}$|^$/)]),
 
-    minDays: new FormControl(null),
-    maxDays: new FormControl(null),
+    minDays: new FormControl(null, [Validators.pattern(/^\d+$|^$/)]),
+    maxDays: new FormControl(null, [Validators.pattern(/^\d+$|^$/)]),
 
     localPickup: new FormControl(false),
     delivery: new FormControl(false)
@@ -57,7 +57,18 @@ export class AnnouncetComponent {
   public async onFileSelected(event: any) {
     const files = event.target.files;
     if (files) {
-      const converted = await this.imageService.convertFiles(files, 5 - this.previews.length);
+      const canAdd = 5 - this.previews.length;
+      if (canAdd <= 0) {
+        ModalComponent.open({
+          title: 'Limite de imagens atingido',
+          message: 'Você já adicionou o máximo de 5 imagens.',
+          confirmText: 'Ok',
+          cancelText: null
+        });
+        event.target.value = null;
+        return;
+      }
+      const converted = await this.imageService.convertFiles(files, canAdd);
       this.previews.push(...converted);
     }
     event.target.value = null;
@@ -67,7 +78,17 @@ export class AnnouncetComponent {
     event.preventDefault();
     if (event.dataTransfer?.files) {
       const files = event.dataTransfer.files;
-      const converted = await this.imageService.convertFiles(files, 5 - this.previews.length);
+      const canAdd = 5 - this.previews.length;
+      if (canAdd <= 0) {
+        ModalComponent.open({
+          title: 'Limite de imagens atingido',
+          message: 'Você já adicionou o máximo de 5 imagens.',
+          confirmText: 'Ok',
+          cancelText: null
+        });
+        return;
+      }
+      const converted = await this.imageService.convertFiles(files, canAdd);
       this.previews.push(...converted);
     }
   }
@@ -83,6 +104,22 @@ export class AnnouncetComponent {
   public submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      ModalComponent.open({
+        title: "Formulário inválido",
+        message: "Por favor, corrija os erros nos campos obrigatórios antes de continuar.",
+        confirmText: "Ok",
+        cancelText: null
+      });
+      return;
+    }
+
+    if (this.previews.length === 0) {
+      ModalComponent.open({
+        title: "Nenhuma imagem adicionada",
+        message: "É necessário adicionar pelo menos uma foto do objeto para criar o anúncio.",
+        confirmText: "Ok",
+        cancelText: null
+      });
       return;
     }
 
@@ -117,4 +154,41 @@ export class AnnouncetComponent {
       }
     });
   }
+
+  public getErrorMessage(fieldName: string): string {
+    const control = this.form.get(fieldName);
+    if (!control || !control.errors || !control.touched) return '';
+
+    if (control.errors['required']) return `${this.getFieldLabel(fieldName)} é obrigatório`;
+    if (control.errors['minlength']) return `Mínimo de ${control.errors['minlength'].requiredLength} caracteres`;
+    if (control.errors['maxlength']) return `Máximo de ${control.errors['maxlength'].requiredLength} caracteres`;
+    if (control.errors['pattern']) {
+      if (fieldName.includes('price') || fieldName.includes('Days')) return 'Digite um valor válido';
+      if (fieldName === 'zipCode') return 'CEP inválido (formato: 00000-000)';
+    }
+    return '';
+  }
+
+  private getFieldLabel(field: string): string {
+    const labels: { [key: string]: string } = {
+      title: 'Título',
+      description: 'Descrição',
+      category: 'Categoria',
+      condition: 'Condição',
+      priceDay: 'Preço por dia',
+      priceHour: 'Preço por hora',
+      address: 'Endereço',
+      city: 'Cidade',
+      stay: 'Estado',
+      zipCode: 'CEP',
+      minDays: 'Mínimo de dias',
+      maxDays: 'Máximo de dias'
+    };
+    return labels[field] || field;
+  }
+
+  public back() {
+    this.location.back();
+  }
+
 }

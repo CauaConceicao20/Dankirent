@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ModalComponent } from '../../components/modal/modal.component';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,12 @@ export class LoginComponent {
   public authentication(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
+      ModalComponent.open({
+        title: 'Formulário inválido',
+        message: 'Por favor, preencha os campos corretamente antes de continuar.',
+        confirmText: 'Ok',
+        cancelText: null
+      });
       return;
     }
 
@@ -32,9 +39,32 @@ export class LoginComponent {
       this.router.navigate(['/explore']);
     }
     else {
-      console.error("Erro ao autenticar:");
-      alert("Dados incorretos ou invalidos");
+      console.error('Erro ao autenticar:');
+      ModalComponent.open({
+        title: 'Erro de autenticação',
+        message: 'Email ou senha incorretos. Verifique e tente novamente.',
+        confirmText: 'Ok',
+        cancelText: null
+      });
     }
+  }
+
+  public getErrorMessage(fieldName: string): string {
+    const control = this.loginForm.get(fieldName);
+    if (!control || !control.errors || !control.touched) return '';
+
+    if (control.errors['required']) return `${this.getFieldLabel(fieldName)} é obrigatório`;
+    if (control.errors['email']) return 'Email inválido';
+    if (control.errors['minlength']) return `Mínimo de ${control.errors['minlength'].requiredLength} caracteres`;
+    return '';
+  }
+
+  private getFieldLabel(field: string): string {
+    const labels: { [key: string]: string } = {
+      email: 'Email',
+      password: 'Senha'
+    };
+    return labels[field] || field;
   }
 }
 
