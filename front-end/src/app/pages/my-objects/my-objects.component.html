@@ -8,7 +8,7 @@
                     <h1>Meus Objetos</h1>
                     <p>Gerencie seus objetos cadastrados para aluguel</p>
                 </div>
-                <button>
+                <button routerLink="/announcet">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-plus" aria-hidden="true">
@@ -82,7 +82,7 @@
                 </svg>
                 <h3>Nenhum objeto cadastrado</h3>
                 <p>Comece a ganhar dinheiro alugando seus objetos ociosos</p>
-                <button>
+                <button routerLink="/announcet">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-plus" aria-hidden="true">
@@ -105,7 +105,8 @@
                 [price]="product.price"
                 [priceHour]="product.priceHour" 
                 [rating]="product.rating" [reviewsCount]="product.reviewsCount"
-                [delivery]="product.delivery">
+                [delivery]="product.delivery"
+                (onDelete)="onProductDeleted($event)">
                 </app-card-item>
             </div>
         </div>

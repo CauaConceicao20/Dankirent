@@ -120,6 +120,12 @@ export class ObjectService {
     return productsOfUser;
   }
 
+  public deleteObject(id : number): void {
+    const products: Product[] = this.getProducts();
+    const filteredProducts = products.filter(product => product.id !== id);
+    this.storageService.saveData(filteredProducts, 'products');
+  }
+
   public searchProducts(name: string, category: string, city: string, priceMax: number,
     stateObject: string) : Product[] {
     return this.getProducts().filter((product: Product) => {

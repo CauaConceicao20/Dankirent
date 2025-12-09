@@ -7,7 +7,7 @@
     margin-top: 15px;
 
     transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
         cursor: pointer;
@@ -16,6 +16,10 @@
 
         .card-img-container img {
             transform: scale(1.1);
+        }
+
+        .card-img-container .btns-container {
+            opacity: 1;
         }
 
         h3 {
@@ -54,6 +58,48 @@
 
             #estado-object {
                 background-color: #DCFCE7;
+            }
+        }
+
+        .btns-container {
+            position: absolute;
+            display: flex;
+            gap: 10px;
+            top: 0.75rem;
+            right: 0.75rem;
+            opacity: 0;
+            z-index: 1000;
+
+
+            .btn-update-object,
+            .btn-remove-object {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+                text-transform: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            .btn-update-object {
+                color: #2563eb;
+                background-color: #ffffffe6;
+
+
+                &:hover {
+                    background-color: #afc3f0cc;
+                }
+            }
+
+            .btn-remove-object {
+                color: #dc2626;
+                background-color: #ffffffe6;
+
+                &:hover {
+                    background-color: #f19f9fd5;
+                }
             }
         }
 
