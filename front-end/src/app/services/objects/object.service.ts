@@ -126,6 +126,31 @@ export class ObjectService {
     this.storageService.saveData(filteredProducts, 'products');
   }
 
+  public updateProduct(product: Product): void {
+    const products: Product[] = this.getProducts();
+    const index = products.findIndex(p => p.id === product.id);
+    if (index === -1) {
+      throw new Error(`Produto com id ${product.id} não encontrado`);
+    }
+
+    // mantemos outros campos que não vieram do formulário (rating, reviewsCount, idUser)
+    products[index] = {
+      ...products[index],
+      title: product.title,
+      category: product.category,
+      state: product.state,
+      imageUrl: product.imageUrl,
+      description: product.description,
+      address: product.address,
+      uf: product.uf,
+      price: product.price,
+      priceHour: product.priceHour,
+      delivery: product.delivery
+    };
+
+    this.storageService.saveData(products, 'products');
+  }
+
   public searchProducts(name: string, category: string, city: string, priceMax: number,
     stateObject: string) : Product[] {
     return this.getProducts().filter((product: Product) => {

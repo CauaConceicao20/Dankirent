@@ -10,6 +10,7 @@ import { ObjectComponent } from './pages/object/object.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { authGuard } from './guard/auth.guard';
 import { TermsUseComponent } from './pages/terms-use/terms-use.component';
+import { UpdateObjectComponent } from './pages/update-object/update-object.component';
 
 export const routes: Routes =[
   {path: '', redirectTo: 'explore', pathMatch: 'full'},
@@ -22,5 +23,6 @@ export const routes: Routes =[
   {path: 'reservations', component: ReservationsComponent, canActivate: [authGuard]},
   {path: 'object/:id', component: ObjectComponent},
   {path: 'profile/:id', component: ProfileComponent, canActivate: [authGuard]},
-  {path: 'terms', component: TermsUseComponent}
+  {path: 'terms', component: TermsUseComponent},
+  {path: 'update-object/:id', component: UpdateObjectComponent, canActivate: [authGuard]}
 ];

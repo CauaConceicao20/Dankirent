@@ -7,7 +7,7 @@ import { ModalComponent } from '../../components/modal/modal.component';
 
 @Component({
   selector: 'app-card-item',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './card-item.component.html',
   styleUrl: './card-item.component.scss'
 })
@@ -32,6 +32,10 @@ export class CardItemComponent {
 
   public viewProduct(id: number): void {
     this.router.navigate(['/object', id]);
+  }
+
+  public redirectTo(id: number): void {
+    this.router.navigate(['/update-object', id]);
   }
 
   public deleteObject(id: number): void {
