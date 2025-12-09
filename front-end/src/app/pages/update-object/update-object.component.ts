@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { CommonModule, Location } from '@angular/common';
+import { Component, ElementRef, ViewChild, OnInit} from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ObjectService } from '../../services/objects/object.service';
@@ -20,8 +20,8 @@ export class UpdateObjectComponent implements OnInit {
 
   @ViewChild('fileInput')
   public fileInput!: ElementRef;
-  
-  public announcet : String = "announcet"
+
+  public announcet: String = "announcet"
   public previews: string[] = [];
   private originalProduct: Product | null = null;
   private productId: number | null = null;
@@ -49,7 +49,7 @@ export class UpdateObjectComponent implements OnInit {
   });
 
   constructor(private objectService: ObjectService, private imageService: ImageService,
-    private router: Router, private route: ActivatedRoute) { }
+    private router: Router, private route: ActivatedRoute, private location : Location) { }
 
   public ngOnInit(): void {
     this.productId = Number(this.route.snapshot.paramMap.get('id')) || null;
@@ -175,6 +175,10 @@ export class UpdateObjectComponent implements OnInit {
     } catch (error) {
       alert('Erro ao atualizar produto: ' + error);
     }
+  }
+
+  public back() {
+    this.location.back();
   }
 
 }

@@ -65,4 +65,15 @@ export class SearchComponent {
       stateObject ?? ""
     );
   }
+
+  public clearFilters(): void {
+    this.form.patchValue({
+      title: '',
+      category: '',
+      city: '',
+      stateObject: '',
+      priceMax: ''
+    });
+    this.products = this.objectService.getProducts();
+  }
 }
