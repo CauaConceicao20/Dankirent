@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MenuNavComponent } from '../menu-nav/menu-nav.component';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
 import { AuthenticationService } from '../../services/auth/authentication.service';
-import { UserService } from '../../services/user/user.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ import { UserService } from '../../services/user/user.service';
 })
 export class HeaderComponent {
   @Input() optionNavSelect!: String;
-  public idUser! : number;
+  public user : User;
 
   public isLogged: boolean;
   public menuDesktopIsVisible: Boolean = false;
@@ -25,7 +25,7 @@ export class HeaderComponent {
 
   public constructor(private auth: AuthenticationService) {
     this.isLogged = auth.isLogged();
-    this.idUser = auth.getUserLogged().id;
+    this.user = auth.getUserLogged();
   }
 
   public select(item: string) : void {

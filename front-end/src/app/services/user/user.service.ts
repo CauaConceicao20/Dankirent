@@ -15,7 +15,7 @@ export class UserService {
     const formatDate = new Intl.DateTimeFormat('pt-BR').format(date);
 
     const user: User = {
-      id: userDataObject.id, name: userDataObject.name, lastName: userDataObject.lastName, password: userDataObject.password, email: userDataObject.email,
+      id: userDataObject.id, photoUrl: userDataObject.photoUrl, name: userDataObject.name, lastName: userDataObject.lastName, password: userDataObject.password, email: userDataObject.email,
       phone: userDataObject.phone, birthday: userDataObject.birthday, cpf: userDataObject.cpf, registerMoment: formatDate
     };
 
@@ -35,5 +35,23 @@ export class UserService {
   public getById(id: number): User | null {
     const users = this.getAll();
     return users.find(user => user.id === id) || null;
+  }
+
+  public updateUser(user: User): User {
+    const users = this.getAll();
+    const userIndex = users.findIndex(u => u.id === user.id);
+
+    if (userIndex !== -1) {
+      users[userIndex].name = user.name;
+      users[userIndex].lastName = user.lastName;
+      users[userIndex].phone = user.phone;
+      users[userIndex].photoUrl = user.photoUrl;
+
+      this.storageService.saveData(users, "registerUser");
+      this.storageService.saveData(users, "loginUser");
+      return users[userIndex];
+    }
+
+    throw new Error('Usuário não encontrado');
   }
 }

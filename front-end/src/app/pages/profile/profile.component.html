@@ -7,7 +7,24 @@
             <div class="profile-description">
                 <div class="profile-data">
                     <div class="photo-perfil">
-                        <img src="" alt="">
+                        <img class="img-profile" *ngIf="user?.photoUrl" [src]="user!.photoUrl" alt="Foto de perfil">
+                        <svg *ngIf="!user?.photoUrl" xmlns="http://www.w3.org/2000/svg" width="78" height="78" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-user text-blue-600" aria-hidden="true">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <button *ngIf="isEditing" type="button" class="btn-trade-photo" (click)="fileInput.click()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-camera" aria-hidden="true">
+                                <path
+                                    d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z">
+                                </path>
+                                <circle cx="12" cy="13" r="3"></circle>
+                            </svg>
+                        </button>
+                        <input #fileInput type="file" accept="image/*" (change)="onPhotoSelected($event)" style="display: none;">
                     </div>
                     <div class="profile-text">
                         <h1>{{user!.name}} {{user?.lastName}}</h1>
@@ -44,12 +61,14 @@
                 <div class="input-group">
                     <div class="field">
                         <label for="nome">Nome:</label>
-                        <input type="text" id="nome" name="nome" required [(ngModel)]="user!.name" [disabled]="!isEditing">
+                        <input type="text" id="nome" name="nome" required [(ngModel)]="user!.name"
+                            [disabled]="!isEditing">
                     </div>
 
                     <div class="field">
                         <label for="sobrenome">Sobrenome:</label>
-                        <input type="text" id="sobrenome" name="sobrenome" required [(ngModel)]="user!.lastName" [disabled]="!isEditing">
+                        <input type="text" id="sobrenome" name="sobrenome" required [(ngModel)]="user!.lastName"
+                            [disabled]="!isEditing">
                     </div>
                 </div>
 
@@ -64,7 +83,8 @@
                 <div class="input-group">
                     <div class="field">
                         <label for="telefone">Telefone:</label>
-                        <input type="tel" id="telefone" name="telefone" required [(ngModel)]="user!.phone" [disabled]="!isEditing">
+                        <input type="tel" id="telefone" name="telefone" required [(ngModel)]="user!.phone"
+                            [disabled]="!isEditing">
                     </div>
                 </div>
 
@@ -72,7 +92,7 @@
                     <div class="field">
                         <label for="birthday">Data de Nascimento:</label>
                         <input type="date" id="birthday" name="birthday" required disabled [(ngModel)]="user!.birthday">
-                         <p>Data de nascimento não pode ser alterado</p>
+                        <p>Data de nascimento não pode ser alterado</p>
                     </div>
                 </div>
 
@@ -80,15 +100,15 @@
                     <div class="field">
                         <label for="telefone">Cpf:</label>
                         <input type="text" id="Cpf" name="Cpf" required disabled [(ngModel)]="user!.cpf">
-                         <p>CPF não pode ser alterado</p>
+                        <p>CPF não pode ser alterado</p>
                     </div>
                 </div>
 
 
 
                 <div class="area-btns-finish" *ngIf="isEditing">
-                    <button class="btn-cancel" type="submit">Cancelar</button>
-                    <button class="btn-finish" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                    <button class="btn-cancel" type="button" (click)="cancelEdit()">Cancelar</button>
+                    <button class="btn-finish" type="button" (click)="saveChanges()"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                             height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-save"
                             aria-hidden="true">

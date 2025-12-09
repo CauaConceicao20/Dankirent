@@ -154,11 +154,24 @@ header {
                 }
 
                 .container-img-profile {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     width: 27px;
                     height: 27px;
                     border-radius: 50%;
                     overflow: hidden;
                     background-color: #D1D1D1;
+                    
+                    .img-profile {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                    
+                    svg {
+                        margin: auto;
+                    }
                 }
             }
 

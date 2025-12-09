@@ -47,6 +47,7 @@ export class RegisterComponent {
 
     const userDataObject: User = {
       id: this.userService.getAll().length + 1 || 1,
+      photoUrl: "",
       name: formValue.name!,
       lastName: formValue.lastname!,
       email: formValue.email!,

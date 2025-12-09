@@ -55,16 +55,22 @@
             </div>
             <div class="profile-user" *ngIf="isLogged" (click)="menuDesktopIsVisible = !menuDesktopIsVisible">
                 <div class="container-img-profile">
-                    <img src="" alt="">
+                    <img class="img-profile" *ngIf="user.photoUrl" [src]="user.photoUrl" alt="Foto de perfil">
+                    <svg *ngIf="!user.photoUrl" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-user text-blue-600" aria-hidden="true">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
                 </div>
-                <span>Cauã Conceição</span>
+                <span>{{user.name}} {{user.lastName}}</span>
                 <svg [class.flipped]="menuDesktopIsVisible" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform" aria-hidden="true">
                     <path d="m6 9 6 6 6-6"></path>
                 </svg>
             </div>
-            <app-menu-nav [idUser]="idUser" [menuVisible]="menuDesktopIsVisible" [options]="optionsDesktop">
+            <app-menu-nav [idUser]="user.id" [menuVisible]="menuDesktopIsVisible" [options]="optionsDesktop">
             </app-menu-nav>
         </div>
     </div>
