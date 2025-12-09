@@ -21,6 +21,6 @@ export const routes: Routes =[
   {path: 'my-objects', component: MyObjectsComponent, canActivate: [authGuard]},
   {path: 'reservations', component: ReservationsComponent, canActivate: [authGuard]},
   {path: 'object/:id', component: ObjectComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
+  {path: 'profile/:id', component: ProfileComponent, canActivate: [authGuard]},
   {path: 'terms', component: TermsUseComponent}
 ];

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MenuNavComponent } from '../menu-nav/menu-nav.component';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
 import { AuthenticationService } from '../../services/auth/authentication.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-header',
@@ -13,19 +14,22 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 })
 export class HeaderComponent {
   @Input() optionNavSelect!: String;
+  public idUser! : number;
 
   public isLogged: boolean;
   public menuDesktopIsVisible: Boolean = false;
   public menuMobileIsVisible: Boolean = false;
-  public optionsDesktop: String[] = ["Meu Perfil", "Sair"];
+  public optionsDesktop: String[] = ["Meu Perfil", "Termos de Uso", "Sair"];
   public optionsMobile: String[] = ["Explorar", "Buscar", "Anunciar", "Meus Objetos", "Reservas",
     "Meu perfil", "Sair"];
 
   public constructor(private auth: AuthenticationService) {
     this.isLogged = auth.isLogged();
+    this.idUser = auth.getUserLogged().id;
   }
 
-  public select(item: string) {
+  public select(item: string) : void {
     this.optionNavSelect = item;
   }
+
 }

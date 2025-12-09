@@ -47,6 +47,10 @@ export class AuthenticationService {
     this.loggedSignal.set(false);
   }
 
+  public getUserLogged(): User {
+    return this.storageService.getData("loginUser");
+  }
+
   public isLogged(): boolean {
     return this.loggedSignal();
   }

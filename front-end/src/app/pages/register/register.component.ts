@@ -54,6 +54,7 @@ export class RegisterComponent {
       cpf: formValue.cpf!,
       birthday: formValue.birthday!,
       password: formValue.password!,
+      registerMoment : ""
     };
 
     if (this.userService.createUser(userDataObject)) {

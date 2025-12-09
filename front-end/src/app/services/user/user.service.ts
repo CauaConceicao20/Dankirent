@@ -11,9 +11,12 @@ export class UserService {
   public constructor(private storageService: StorageService) { }
 
   public createUser(userDataObject: any): User {
+    const date = new Date();
+    const formatDate = new Intl.DateTimeFormat('pt-BR').format(date);
+
     const user: User = {
       id: userDataObject.id, name: userDataObject.name, lastName: userDataObject.lastName, password: userDataObject.password, email: userDataObject.email,
-      phone: userDataObject.phone, birthday: userDataObject.birthday, cpf: userDataObject.cpf
+      phone: userDataObject.phone, birthday: userDataObject.birthday, cpf: userDataObject.cpf, registerMoment: formatDate
     };
 
     const users = this.getAll();
@@ -27,5 +30,10 @@ export class UserService {
   public getAll(): User[] {
     const users = this.storageService.getData("registerUser");
     return Array.isArray(users) ? users as User[] : [];
+  }
+
+  public getById(id: number): User | null {
+    const users = this.getAll();
+    return users.find(user => user.id === id) || null;
   }
 }

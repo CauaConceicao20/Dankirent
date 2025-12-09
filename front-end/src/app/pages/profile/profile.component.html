@@ -10,14 +10,14 @@
                         <img src="" alt="">
                     </div>
                     <div class="profile-text">
-                        <h1>Cauã Conceição</h1>
+                        <h1>{{user!.name}} {{user?.lastName}}</h1>
                         <p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-mail" aria-hidden="true">
                                 <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
                                 <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                            </svg><span>cauaconceicaode.com</span>
+                            </svg><span>{{user?.email}}</span>
                         </p>
                         <p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
@@ -27,7 +27,7 @@
                                 <path d="M16 2v4"></path>
                                 <rect width="18" height="18" x="3" y="4" rx="2"></rect>
                                 <path d="M3 10h18"></path>
-                            </svg><span>membro desde invalid date</span>
+                            </svg><span>{{user?.registerMoment}}</span>
                         </p>
                     </div>
                 </div>
@@ -44,19 +44,19 @@
                 <div class="input-group">
                     <div class="field">
                         <label for="nome">Nome:</label>
-                        <input type="text" id="nome" name="nome" required [disabled]="!isEditing">
+                        <input type="text" id="nome" name="nome" required [(ngModel)]="user!.name" [disabled]="!isEditing">
                     </div>
 
                     <div class="field">
                         <label for="sobrenome">Sobrenome:</label>
-                        <input type="text" id="sobrenome" name="sobrenome" required [disabled]="!isEditing">
+                        <input type="text" id="sobrenome" name="sobrenome" required [(ngModel)]="user!.lastName" [disabled]="!isEditing">
                     </div>
                 </div>
 
                 <div class="input-group">
                     <div class="field">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required disabled [(ngModel)]="email">
+                        <input type="email" id="email" name="email" required disabled [(ngModel)]="user!.email">
                         <p>Email não pode ser alterado</p>
                     </div>
                 </div>
@@ -64,16 +64,27 @@
                 <div class="input-group">
                     <div class="field">
                         <label for="telefone">Telefone:</label>
-                        <input type="tel" id="telefone" name="telefone" required [disabled]="!isEditing">
+                        <input type="tel" id="telefone" name="telefone" required [(ngModel)]="user!.phone" [disabled]="!isEditing">
                     </div>
                 </div>
 
                 <div class="input-group">
                     <div class="field">
-                        <label for="password">Cidade, Estado:</label>
-                        <input type="password" id="password" name="password" required [disabled]="!isEditing">
+                        <label for="birthday">Data de Nascimento:</label>
+                        <input type="date" id="birthday" name="birthday" required disabled [(ngModel)]="user!.birthday">
+                         <p>Data de nascimento não pode ser alterado</p>
                     </div>
                 </div>
+
+                <div class="input-group">
+                    <div class="field">
+                        <label for="telefone">Cpf:</label>
+                        <input type="text" id="Cpf" name="Cpf" required disabled [(ngModel)]="user!.cpf">
+                         <p>CPF não pode ser alterado</p>
+                    </div>
+                </div>
+
+
 
                 <div class="area-btns-finish" *ngIf="isEditing">
                     <button class="btn-cancel" type="submit">Cancelar</button>
@@ -94,13 +105,13 @@
             <article class="card">
                 <div class="card-content">
                     <h3>Objetos Cadastrados</h3>
-                    <p class="statistical-value">4</p>
+                    <p class="statistical-value">{{productsUser}}</p>
                 </div>
             </article>
             <article class="card">
                 <div class="card-content">
                     <h3>Reservas Realizadas</h3>
-                    <p class="statistical-value">4</p>
+                    <p class="statistical-value">0</p>
                 </div>
             </article>
         </div>
