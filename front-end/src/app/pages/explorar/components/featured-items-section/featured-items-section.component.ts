@@ -18,9 +18,9 @@ export class FeaturedItemsSectionComponent implements OnInit {
 
     public constructor(private router: Router, private objectService : ObjectService) {}
 
-    public cards! : Product[];
+    public cards: Product[] = [];
 
    public ngOnInit(): void {
-        this.cards = this.objectService.getProducts();
+        this.cards = this.objectService.getProducts() || [];
     }
 }

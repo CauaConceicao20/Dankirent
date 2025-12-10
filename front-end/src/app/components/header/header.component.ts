@@ -14,7 +14,7 @@ import { User } from '../../models/user.model';
 })
 export class HeaderComponent {
   @Input() optionNavSelect!: String;
-  public user : User;
+  public user: User | null;
 
   public isLogged: boolean;
   public menuDesktopIsVisible: Boolean = false;
@@ -25,7 +25,7 @@ export class HeaderComponent {
 
   public constructor(private auth: AuthenticationService) {
     this.isLogged = auth.isLogged();
-    this.user = auth.getUserLogged();
+    this.user = this.isLogged ? auth.getUserLogged() : null;
   }
 
   public select(item: string) : void {

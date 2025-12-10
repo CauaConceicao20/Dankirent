@@ -91,6 +91,10 @@ export class ObjectService {
     const products: Product[] = this.getProducts();
     const userLogged : User = this.storageService.getData('loginUser');
 
+    if (!userLogged || !userLogged.id) {
+      throw new Error('Usuário não autenticado. Não é possível criar um produto.');
+    }
+
     const newId = products.length > 0
       ? Math.max(...products.map(p => p.id)) + 1 : 1;
     
@@ -111,6 +115,10 @@ export class ObjectService {
   public getProductsOfUser() : Product[] {
     const userLogged : User = this.storageService.getData('loginUser');
     const productsOfUser: Product[] = [];
+
+    if (!userLogged || !userLogged.id) {
+      return productsOfUser;
+    }
 
     for(let product of this.getProducts()) {
       if(product.idUser == userLogged.id) {

@@ -16,13 +16,13 @@ export class MyObjectsComponent {
   
   public myObjects: String = "my-objects";
 
-   public products : Product[];
+   public products: Product[] = [];
   
   constructor(private objectService : ObjectService, private router : Router) {
-    this.products = objectService.getProductsOfUser();
+    this.products = objectService.getProductsOfUser() || [];
   }
 
   public onProductDeleted(id: number): void {
-    this.products = this.objectService.getProductsOfUser();
+    this.products = this.objectService.getProductsOfUser() || [];
   }
 }

@@ -34,7 +34,7 @@ export class SearchComponent {
   }
 
   public ngOnInit(): void {
-    this.products = this.objectService.getProducts();
+    this.products = this.objectService.getProducts() || [];
 
     this.route.queryParams.subscribe(params => {
       const category = params['category'];
@@ -74,6 +74,6 @@ export class SearchComponent {
       stateObject: '',
       priceMax: ''
     });
-    this.products = this.objectService.getProducts();
+    this.products = this.objectService.getProducts() || [];
   }
 }
