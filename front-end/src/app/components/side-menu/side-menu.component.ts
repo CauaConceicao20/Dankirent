@@ -12,7 +12,7 @@ import { User } from '../../models/user.model';
   styleUrl: './side-menu.component.scss'
 })
 export class SideMenuComponent {
-  @Input() idUser! : number;
+  @Input() idUser?: number;
   @Input() sideMenuIsVisible: Boolean = false;
   @Input() optionMenuSelect : String = "Explorar";
   @Input() options!: String[];
@@ -25,7 +25,10 @@ export class SideMenuComponent {
     this.user = this.isLogged ? authService.getUserLogged() : null;
   }
 
-  public viewProfile(id: number) {
+  public viewProfile(id?: number) {
+    if (id === undefined || id === null) {
+      return;
+    }
     this.router.navigate(['/profile', id]);
   }
 

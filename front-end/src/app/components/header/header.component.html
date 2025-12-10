@@ -43,7 +43,7 @@
                 <div class="menu-hamburguer-linha"></div>
                 <div class="menu-hamburguer-linha"></div>
             </button>
-            <app-side-menu *ngIf="isLogged && user" [idUser]="user.id"  [sideMenuIsVisible]="menuMobileIsVisible" [optionMenuSelect]="optionNavSelect"
+            <app-side-menu [idUser]="user?.id" [sideMenuIsVisible]="menuMobileIsVisible" [optionMenuSelect]="optionNavSelect"
                 [options]="optionsMobile">
             </app-side-menu>
         </div>
