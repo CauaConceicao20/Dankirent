@@ -12,5 +12,5 @@ import { TermsContactSectionComponent } from "./components/terms-contact-section
   styleUrl: './terms-use.component.scss'
 })
 export class TermsUseComponent {
-  public terms : string = "";
+  public terms : string = "terms";
 }

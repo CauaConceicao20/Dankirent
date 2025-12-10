@@ -1,8 +1,14 @@
 <aside class="side-menu" [class.active]="sideMenuIsVisible">
-    <a *ngIf="isLogged" class="conteiner-user">
+    <a (click)="viewProfile(idUser)" *ngIf="isLogged" class="conteiner-user">
         <div class="profile-user">
             <div class="container-img-profile">
-                <img src="" alt="">
+                <img class="img-profile" *ngIf="user!.photoUrl" [src]="user!.photoUrl" alt="Foto de perfil">
+                <svg *ngIf="!user!.photoUrl" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-user text-blue-600" aria-hidden="true">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
             </div>
             <div class="profile-user-name">
                 <p>Cauã Conceição</p>
@@ -11,20 +17,21 @@
         </div>
     </a>
     <div class="container-btn-enter" *ngIf="!isLogged">
-        <a href="/login"><button class="btn-menu">Entrar</button></a>
+        <a routerLink="/login"><button class="btn-menu">Entrar</button></a>
     </div>
     <div class="navegation-hamburguer">
         <nav class="nav-links-off" *ngIf="!isLogged">
-            <a [class.active]="optionMenuSelect === 'explorar'" href="">Explorar</a>
-            <a [class.active]="optionMenuSelect === 'search'" href=""><span>Buscar</span></a>
+            <a [class.active]="optionMenuSelect === 'explorar'" routerLink="/explore">Explorar</a>
+            <a [class.active]="optionMenuSelect === 'search'" routerLink="/search"><span>Buscar</span></a>
         </nav>
         <nav class="nav-links-on" *ngIf="isLogged">
-            <a [class.active]="optionMenuSelect === 'explorar'" routerLink="">Explorar</a>
+            <a [class.active]="optionMenuSelect === 'explorar'" routerLink="/explore">Explorar</a>
             <a [class.active]="optionMenuSelect === 'search'" routerLink="/search"><span>Buscar</span></a>
             <a [class.active]="optionMenuSelect === 'announcet'" routerLink="/announcet"><span>Anunciar</span></a>
             <a [class.active]="optionMenuSelect === 'my-objects'" routerLink="/my-objects">Meus
                 Objetos</a>
             <a [class.active]="optionMenuSelect === 'reservations'" routerLink="/reservations">Reservas</a>
+            <a [class.active]="optionMenuSelect === 'terms'" routerLink="/terms">Termos de uso</a>
             <a (click)="logout()">Sair</a>
         </nav>
     </div>
