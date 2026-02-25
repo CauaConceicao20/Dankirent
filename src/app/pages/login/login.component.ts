@@ -35,18 +35,30 @@ export class LoginComponent {
     }
 
     const loginValue = this.loginForm.value;
-    if (this.authService.login(loginValue.email!, loginValue.password!)) {
-      this.router.navigate(['/explore']);
-    }
-    else {
-      console.error('Erro ao autenticar:');
-      ModalComponent.open({
+
+    this.authService.login(loginValue.email!, loginValue.password!).subscribe({
+      next: (value) => {
+          this.router.navigate(['/explore']);
+      },
+      error(err) {
+       console.log("problema com login", err); 
+           ModalComponent.open({
         title: 'Erro de autenticação',
         message: 'Email ou senha incorretos. Verifique e tente novamente.',
         confirmText: 'Ok',
         cancelText: null
       });
+      }
+    })
+    /*
+    if (this.authService.login(loginValue.email!, loginValue.password!)) {
+    
     }
+    else {
+      console.error('Erro ao autenticar:');
+  
+    }
+      */
   }
 
   public getErrorMessage(fieldName: string): string {

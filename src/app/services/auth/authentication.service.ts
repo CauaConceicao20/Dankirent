@@ -2,6 +2,9 @@ import { Injectable, signal } from '@angular/core';
 import { StorageService } from '../storage/storage.service';
 import { User } from '../../models/user.model';
 import { UserService } from '../user/user.service';
+import { Observable } from 'rxjs';
+import { environments } from '../../../environments/environments';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +12,19 @@ import { UserService } from '../user/user.service';
 export class AuthenticationService {
 
   public loggedSignal = signal<boolean>(false);
+  private api = environments.apiUrl;
 
-  constructor(private storageService: StorageService, private userService : UserService) {
+  constructor(private storageService: StorageService, private userService : UserService,
+     private http: HttpClient) {
     const user = this.storageService.getData("loginUser");
     this.loggedSignal.set(!!user);
   }
-  public login(email: string, password: string): Boolean {
+
+  public login(email: string, password: string) : Observable<any> {
+    return this.http.post(`${this.api}/api/auth/v1/login`, { email, password})
+  }
+
+  /*public login(email: string, password: string): Boolean {
     const users: User[] = this.userService.getAll();
 
     if (users && email && password) {
@@ -41,6 +51,7 @@ export class AuthenticationService {
     }
     return false
   }
+    */
 
   public logout(): void {
     this.storageService.clearData("loginUser");
