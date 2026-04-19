@@ -1,6 +1,6 @@
 export interface User {
     id: number,
-    photoUrl : string,
+    photoName : string,
     name: string,
     lastName: string,
     password: string,

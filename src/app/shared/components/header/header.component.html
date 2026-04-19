@@ -1,0 +1,76 @@
+<header>
+    <div class="header-container-login">
+        <div class="logo">
+            <a href=""><img src="img/logo-danki.png" alt="Logo"></a>
+        </div>
+        <nav class="nav-links-off" *ngIf="!isLogged">
+            <a [class.active]="optionNavSelect === 'explorar'" href="explore">Explorar</a>
+            <a [class.active]="optionNavSelect === 'search'" href="search"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true">
+                    <path d="m21 21-4.34-4.34"></path>
+                    <circle cx="11" cy="11" r="8"></circle>
+                </svg><span>Buscar</span>
+            </a>
+        </nav>
+
+        <nav class="nav-links-on" *ngIf="isLogged">
+            <a [class.active]="optionNavSelect === 'explorar'" href="explore">Explorar</a>
+            <a [class.active]="optionNavSelect === 'search'" href="/search"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true">
+                    <path d="m21 21-4.34-4.34"></path>
+                    <circle cx="11" cy="11" r="8"></circle>
+                </svg><span>Buscar</span></a>
+            <a [class.active]="optionNavSelect === 'announcet'" href="/announcet"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-plus" aria-hidden="true">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5v14"></path>
+                </svg><span>Anunciar</span></a>
+            <a [class.active]="optionNavSelect === 'my-objects'" href="/my-objects">Meus
+                Objetos</a>
+            <a [class.active]="optionNavSelect === 'reservations'" href="reservations">Reservas</a>
+        </nav>
+
+        <div class="container-hamburguer" (click)="menuMobileIsVisible = !menuMobileIsVisible">
+            <div class="container-btn-enter" *ngIf="!isLogged">
+                <a href="/login"><button class="btn-menu">Entrar</button></a>
+            </div>
+            <button class="botao-hamburguer">
+                <div class="menu-hamburguer-linha"></div>
+                <div class="menu-hamburguer-linha"></div>
+                <div class="menu-hamburguer-linha"></div>
+            </button>
+            <app-side-menu [idUser]="user?.id" [sideMenuIsVisible]="menuMobileIsVisible" [optionMenuSelect]="optionNavSelect"
+                [options]="optionsMobile">
+            </app-side-menu>
+        </div>
+
+        <div class="conteiner-user">
+            <div class="container-btn-enter" *ngIf="!isLogged">
+                <a href="/login"><button class="btn-menu">Entrar</button></a>
+            </div>
+            <div class="profile-user" *ngIf="isLogged && user" (click)="menuDesktopIsVisible = !menuDesktopIsVisible">
+                <div class="container-img-profile">
+                    <img class="img-profile" *ngIf="user?.photoName" [src]="`${storageURL}/${user!.photoName}`" alt="Foto de perfil">
+                    <svg *ngIf="!user.photoName" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-user text-blue-600" aria-hidden="true">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <span>{{user!.name}} {{user!.lastName}}</span>
+                <svg [class.flipped]="menuDesktopIsVisible" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6"></path>
+                </svg>
+            </div>
+            <app-menu-nav *ngIf="isLogged && user" [idUser]="user.id" [menuVisible]="menuDesktopIsVisible" [options]="optionsDesktop">
+            </app-menu-nav>
+        </div>
+    </div>
+</header>

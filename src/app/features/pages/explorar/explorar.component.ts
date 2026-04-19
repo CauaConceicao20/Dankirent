@@ -1,0 +1,19 @@
+import { Component } from '@angular/core';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { HeroSectionComponent } from "./components/hero-section/hero-section.component";
+import { CategoriesSectionComponent } from "./components/categories-section/categories-section.component";
+import { FeaturedItemsSectionComponent } from './components/featured-items-section/featured-items-section.component';
+import { BenefitsSectionComponent } from './components/benefits-section/benefits-section.component';
+import { FooterComponent } from '../../../shared/components/footer/footer.component';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-apresentation',
+  imports: [HeaderComponent, HeroSectionComponent, CategoriesSectionComponent, FeaturedItemsSectionComponent,
+      BenefitsSectionComponent, FooterComponent, CommonModule],
+  templateUrl: './explorar.component.html',
+  styleUrl: './explorar.component.scss'
+})
+export class ExplorarComponent {
+ public explorar : String = "explorar";
+}
